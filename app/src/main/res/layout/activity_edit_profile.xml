@@ -22,7 +22,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -32,7 +35,7 @@
             <View
                 android:id="@+id/bg_round_rec"
                 android:layout_width="match_parent"
-                android:layout_height="570dp"
+                android:layout_height="670dp"
                 android:layout_marginTop="108dp"
                 android:layout_marginBottom="50dp"
                 android:background="@drawable/bg_round_rec"
@@ -86,15 +89,24 @@
                     android:orientation="horizontal"
                     android:padding="10dp">
 
-
                     <Button
                         android:id="@+id/btnupload"
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
                         android:layout_marginTop="4dp"
-                        android:layout_marginLeft="135dp"
                         android:background="@drawable/rounded_btn_black"
                         android:text="upload"
+                        android:textColor="@color/white" />
+
+                    <Button
+                        android:id="@+id/btnupdate"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginLeft="60dp"
+                        android:background="@drawable/rounded_btn_black"
+                        android:text="update"
                         android:textColor="@color/white" />
                 </LinearLayout>
 
@@ -332,7 +344,7 @@
 
             </androidx.appcompat.widget.LinearLayoutCompat>
         </RelativeLayout>
-
+    </ScrollView>
 
     <FrameLayout
         android:id="@+id/fragment_container"

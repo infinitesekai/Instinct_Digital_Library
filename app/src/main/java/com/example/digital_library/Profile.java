@@ -42,6 +42,10 @@ public class Profile extends Fragment {
         DB = DatabaseAccess.getInstance(getContext());
         DB.open();
         initViews(view);
+        photoImage= DB.getPic(currentUser.getEmail());
+        if(photoImage!=null){
+            photo.setImageBitmap(getImage(photoImage));
+        }
         return view;
     }
 

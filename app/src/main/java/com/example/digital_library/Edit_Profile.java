@@ -40,6 +40,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
+import static com.example.digital_library.util.Utils.getByte;
 import static com.example.digital_library.util.Utils.getImage;
 
 public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
@@ -53,7 +54,8 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
     private EditText phoneEdit;//phone edit filed
     private Button cancelBtn;//cance button
     private Button saveBtn;//save button
-    private Button uploadBtn;//save button
+    private Button uploadBtn;//
+    private Button updateBtn;
     private int lastfragment;
     private byte[] photoImage;
     private ImageView photo;
@@ -62,6 +64,8 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
     String selectedGender="";
 
     private User currentUser;
+    public static final int SELECT_PHOTO=7777;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +73,7 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
         lastfragment=0;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
+
 
         //get intent for current user
         currentUser = (User) getIntent().getSerializableExtra("user");
@@ -93,6 +98,7 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
         cancelBtn = findViewById(R.id.btncancel);
         saveBtn = findViewById(R.id.btnsave);
         uploadBtn = findViewById(R.id.btnupload);
+        updateBtn = findViewById(R.id.btnupdate);
         photo= findViewById(R.id.photo);
 
         //get intent for current user
@@ -103,15 +109,22 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
         lastnameEdit.setText(currentUser.getLastname());
         phoneEdit.setText(currentUser.getPhoneNo());
         dateBtn.setText(currentUser.getBdate());
-        photoImage= currentUser.getPhoto();
-        if(photoImage!=null){
-            photo.setImageBitmap(getImage(photoImage));
-        }
+
+
+//        photoImage= currentUser.getPhoto();
+//        if(photoImage!=null){
+//            photo.setImageBitmap(getImage(photoImage));
+//        }
+
 
         //initiate database access and open database
         DatabaseAccess DB = DatabaseAccess.getInstance(this);
         DB.open();
 
+        photoImage= DB.getPic(currentUser.getEmail());
+        if(photoImage!=null){
+            photo.setImageBitmap(getImage(photoImage));
+        }
 
         //school list spinner-school list from database
         ArrayAdapter genderaa = new ArrayAdapter(this,android.R.layout.simple_list_item_1,gender);
@@ -135,10 +148,32 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Intent.ACTION_PICK);
-                intent.setType("images/*");
-               // startActivityForResult(intent,SELECT_PHOTO);
+                intent.setType("image/*");
+               startActivityForResult(intent,SELECT_PHOTO);
             }
         });
+
+        updateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //convert source of image view to bitmap
+                Bitmap bitmap=((BitmapDrawable)photo.getDrawable()).getBitmap();
+                boolean update;
+               update=DB.addPhoto(currentUser.getEmail(),getByte(bitmap));
+                if (update) {
+                    Toast.makeText(Edit_Profile.this,"Updated. Saved.",Toast.LENGTH_SHORT).show();
+
+
+                } else {
+                    Toast.makeText(Edit_Profile.this,"Save failed",Toast.LENGTH_SHORT).show();
+                }
+
+
+
+            }
+        });
+
+
 
         //click date and show calendar
         dateBtn.setOnClickListener(new View.OnClickListener() {
@@ -205,40 +240,15 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
 
 
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if(requestCode==SELECT_PHOTO && resultCode==RESULT_OK && data !=null){
-//            Uri pickedImage=data.getData();
-//            photo.setImageURI(pickedImage);
-//            DatabaseAccess DB = DatabaseAccess.getInstance(this);
-//            DB.open();
-//            //convert source of image view to bitmap
-//            Bitmap bitmap=((BitmapDrawable)photo.getDrawable()).getBitmap();
-//
-//            //create dialog to save
-//            AlertDialog.Builder builder=new AlertDialog.Builder(Edit_Profile.this);
-//            builder.setTitle("Confirm?");
-//
-//            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialog, int which) {
-//                    dialog.dismiss();
-//                }
-//            });
-//
-//            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialog, int which) {
-//                    DB.addPhoto(currentUser.getEmail(), Utils.getByte(bitmap));
-//                    Toast.makeText(Edit_Profile.this,"Uploaded!", Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//
-//
-//
-//        }
-//    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==SELECT_PHOTO && resultCode==RESULT_OK && data !=null){
+            Uri pickedImage=data.getData();
+            photo.setImageURI(pickedImage);
+
+        }
+    }
 
     @Override
     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
@@ -315,7 +325,7 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
                     bundle = new Bundle();
                     bundle.putSerializable("user",currentUser);//pass the value
                     selectedFragment.setArguments(bundle);
-                    //lastfragment = R.id.nav_profile;
+                    lastfragment = R.id.nav_profile;
                     break;
                 case R.id.nav_search:
                     bundle = new Bundle();

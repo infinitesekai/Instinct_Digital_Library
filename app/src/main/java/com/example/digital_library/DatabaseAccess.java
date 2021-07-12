@@ -72,7 +72,7 @@ public class DatabaseAccess<instance> {
     //check ic and password
     public User verifyAcc(String useremail, String pwd) {
 
-        String queryUser = "Select email,firstname,lastname,gender,phoneNo,bdate,photo from User  where email = '" + useremail+ "' and password = '" + pwd + "'";
+        String queryUser = "Select email,firstname,lastname,gender,phoneNo,bdate from User  where email = '" + useremail+ "' and password = '" + pwd + "'";
         Cursor cursor = database.rawQuery(queryUser, null);
         User user = new User();
         if (cursor.getCount() > 0) {
@@ -83,14 +83,14 @@ public class DatabaseAccess<instance> {
             String gender = cursor.getString(3);
             String phone = cursor.getString(4);
             String bdate = cursor.getString(5);
-            byte[] photo = cursor.getBlob(6);
+
             user.setEmail(email);
             user.setFirstname(firstname);
             user.setLastname(lastname);
             user.setGender(gender);
             user.setPhoneNo(phone);
             user.setBdate(bdate);
-            user.setPhoto(photo);
+
         }
         cursor.close();
         return user;
@@ -153,16 +153,34 @@ public class DatabaseAccess<instance> {
 //        return result;
 //    }
 
-    public void addPhoto(String email,byte[] image){
+        public byte[] getPic(String email){
+        byte[] result=null;
+        Cursor cursor = database.rawQuery("SELECT photo " +
+                "FROM User WHERE email = ?", new String[]{email});
 
-        String update_photo = "update User set photo ='" + image + "'where email = '" + email + "'";
-        try {
-            database.execSQL(update_photo);
-        } catch (RuntimeException e) {
-           e.printStackTrace();
-           //return false;
+        if(cursor.moveToFirst()){
+            do{
+                result=cursor.getBlob(0);
+            }while (cursor.moveToNext());
         }
-        //return true;
+        return result;
+    }
+
+    public boolean addPhoto(String email,byte[] image){
+
+//        String update_photo = "update User set photo ='" + image + "'where email = '" + email + "'";
+//        try {
+//            database.execSQL(update_photo);
+//        } catch (RuntimeException e) {
+//           e.printStackTrace();
+//           //return false;
+//        }
+//        //return true;
+        SQLiteDatabase database=this.openHelper.getReadableDatabase();
+        ContentValues cv=new ContentValues();
+        cv.put("photo",image);
+        database.update("User",cv,"email=?",new String[]{email});
+        return true;
 
     }
 
