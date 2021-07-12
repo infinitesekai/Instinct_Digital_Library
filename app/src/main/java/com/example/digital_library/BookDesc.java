@@ -32,7 +32,7 @@ public class BookDesc extends AppCompatActivity {
     private TextView title,author,genre,synopsis,country,publisher;
     private byte[] coverImage;
     String bookTitle;
-    Button btndownload;//download button
+    Button btnread;//download button
     private User currentUser;//current user
     private int lastfragment;//indicate last fragment for navigation bar
     private ImageView cover;
@@ -59,7 +59,7 @@ public class BookDesc extends AppCompatActivity {
         publisher=findViewById(R.id.tvpublisher);
 
 
-        btndownload=findViewById(R.id.btndownload);
+        btnread=findViewById(R.id.btnread);
 
         //initiate database access and open database
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
@@ -86,13 +86,13 @@ public class BookDesc extends AppCompatActivity {
 
         //on click listener for download button
 
-        btndownload.setOnClickListener(new View.OnClickListener() {
+        btnread.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // Intent i= new Intent(BookDesc.this, DownloadBook.class);
-               // i.putExtra("user",currentUser);
-
-                //startActivity(i);
+                Intent i= new Intent(BookDesc.this, BookRead.class);
+                i.putExtra("user",currentUser);
+                i.putExtra("bookTitle",bookTitle);
+                startActivity(i);
             }
         });
 

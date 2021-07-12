@@ -1,5 +1,6 @@
 package com.example.digital_library;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -151,6 +152,30 @@ public class DatabaseAccess<instance> {
 //        }
 //        return result;
 //    }
+
+    public void addPhoto(String email,byte[] image){
+
+        String update_photo = "update User set photo ='" + image + "'where email = '" + email + "'";
+        try {
+            database.execSQL(update_photo);
+        } catch (RuntimeException e) {
+           e.printStackTrace();
+           //return false;
+        }
+        //return true;
+
+    }
+
+    public String getLink(String title) {
+        String link = "";
+        Cursor cursor = database.rawQuery("SELECT pdflink FROM Book WHERE title=?", new String[]{title});
+        if (cursor.moveToFirst()) {
+            link  = new String(cursor.getString(0));
+
+        }
+        cursor.close();
+        return link ;
+    }
 
 
 }

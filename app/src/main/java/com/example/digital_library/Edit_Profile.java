@@ -1,14 +1,21 @@
 package com.example.digital_library;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.icu.text.UnicodeSetSpanner;
 import android.icu.util.Calendar;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -28,6 +35,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.digital_library.util.MyApplication;
+import com.example.digital_library.util.Utils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -54,7 +62,7 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
     String selectedGender="";
 
     private User currentUser;
-    //private DatabaseHelper DB;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -123,6 +131,15 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
             }
         });
 
+        uploadBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Intent.ACTION_PICK);
+                intent.setType("images/*");
+               // startActivityForResult(intent,SELECT_PHOTO);
+            }
+        });
+
         //click date and show calendar
         dateBtn.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
@@ -182,8 +199,46 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
 
             }
         });
-    }
 
+
+    };
+
+
+
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if(requestCode==SELECT_PHOTO && resultCode==RESULT_OK && data !=null){
+//            Uri pickedImage=data.getData();
+//            photo.setImageURI(pickedImage);
+//            DatabaseAccess DB = DatabaseAccess.getInstance(this);
+//            DB.open();
+//            //convert source of image view to bitmap
+//            Bitmap bitmap=((BitmapDrawable)photo.getDrawable()).getBitmap();
+//
+//            //create dialog to save
+//            AlertDialog.Builder builder=new AlertDialog.Builder(Edit_Profile.this);
+//            builder.setTitle("Confirm?");
+//
+//            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialog, int which) {
+//                    dialog.dismiss();
+//                }
+//            });
+//
+//            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialog, int which) {
+//                    DB.addPhoto(currentUser.getEmail(), Utils.getByte(bitmap));
+//                    Toast.makeText(Edit_Profile.this,"Uploaded!", Toast.LENGTH_SHORT).show();
+//                }
+//            });
+//
+//
+//
+//        }
+//    }
 
     @Override
     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {

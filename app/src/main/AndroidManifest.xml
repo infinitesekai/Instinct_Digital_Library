@@ -22,7 +22,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Digital_Library">
-        <activity android:name=".BookDesc"></activity>
+        <activity android:name=".BookRead"></activity>
+        <activity android:name=".BookDesc" />
         <activity android:name=".BookList" />
         <activity android:name=".Edit_Profile" />
         <activity android:name=".MainActivity" />

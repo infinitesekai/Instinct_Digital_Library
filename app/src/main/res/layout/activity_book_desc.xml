@@ -246,11 +246,11 @@
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/btndownload"
+                    android:id="@+id/btnread"
                     android:layout_width="100dp"
                     android:layout_height="40dp"
                     android:textColor="@color/white"
-                    android:text="Download"
+                    android:text="Read"
                     android:background="@drawable/rounded_btn_black"
                     android:stateListAnimator="@null"
                     android:layout_marginLeft="150dp"
