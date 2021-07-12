@@ -7,17 +7,17 @@ public class BookInfo {
     private String synopsis;
     private String country;
     private String publisher;
-    //private byte[] cover;
+    private byte[] cover;
 
 
-    public BookInfo(String title, String author, String genre, String synopsis, String country, String publisher) {
+    public BookInfo(String title, String author, String genre, String synopsis, String country, String publisher,byte[] cover) {
         this.title = title;
         this.author = author;
         this.genre = genre;
         this.synopsis = synopsis;
         this.country = country;
         this.publisher = publisher;
-        //this.cover = cover;
+        this.cover = cover;
     }
 
 //getter and setter for qualification information
@@ -71,13 +71,13 @@ public class BookInfo {
         this.publisher = publisher;
     }
 
-//    public byte[] getCover() {
-//        return cover;
-//    }
-//
-//    public void setCover(byte[] cover) {
-//        this.cover = cover;
-//    }
+    public byte[] getCover() {
+        return cover;
+    }
+
+    public void setCover(byte[] cover) {
+        this.cover = cover;
+    }
 
 
 }

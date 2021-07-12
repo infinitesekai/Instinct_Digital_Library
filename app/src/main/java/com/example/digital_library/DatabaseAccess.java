@@ -71,7 +71,7 @@ public class DatabaseAccess<instance> {
     //check ic and password
     public User verifyAcc(String useremail, String pwd) {
 
-        String queryUser = "Select email,firstname,lastname,gender,phoneNo,bdate from User  where email = '" + useremail+ "' and password = '" + pwd + "'";
+        String queryUser = "Select email,firstname,lastname,gender,phoneNo,bdate,photo from User  where email = '" + useremail+ "' and password = '" + pwd + "'";
         Cursor cursor = database.rawQuery(queryUser, null);
         User user = new User();
         if (cursor.getCount() > 0) {
@@ -82,12 +82,14 @@ public class DatabaseAccess<instance> {
             String gender = cursor.getString(3);
             String phone = cursor.getString(4);
             String bdate = cursor.getString(5);
+            byte[] photo = cursor.getBlob(6);
             user.setEmail(email);
             user.setFirstname(firstname);
             user.setLastname(lastname);
             user.setGender(gender);
             user.setPhoneNo(phone);
             user.setBdate(bdate);
+            user.setPhoto(photo);
         }
         cursor.close();
         return user;
@@ -127,15 +129,28 @@ public class DatabaseAccess<instance> {
 
     public BookInfo DisplayBook(String title) {
         BookInfo book = null;
-        Cursor cursor = database.rawQuery("SELECT title,author,genre,synopsis,country,publisher " +
+        Cursor cursor = database.rawQuery("SELECT title,author,genre,synopsis,country,publisher,cover " +
                 "FROM Book WHERE title = ?", new String[]{title});
         if (cursor.moveToFirst()) {
             book= new BookInfo(cursor.getString(0), cursor.getString(1), cursor.getString(2)
-                    , cursor.getString(3), cursor.getString(4), cursor.getString(5));
+                    , cursor.getString(3), cursor.getString(4), cursor.getString(5),cursor.getBlob(6));
         }
         cursor.close();
         return book;
     }
+
+//    public byte[] getCover(String title){
+//        byte[] result=null;
+//        Cursor cursor = database.rawQuery("SELECT cover " +
+//                "FROM Book WHERE title = ?", new String[]{title});
+//
+//        if(cursor.moveToFirst()){
+//            do{
+//                result=cursor.getBlob(0);
+//            }while (cursor.moveToNext());
+//        }
+//        return result;
+//    }
 
 
 }

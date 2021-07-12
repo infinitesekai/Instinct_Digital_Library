@@ -21,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -30,6 +31,8 @@ import com.example.digital_library.util.MyApplication;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
+
+import static com.example.digital_library.util.Utils.getImage;
 
 public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     private TextView emailText;//ic text
@@ -42,7 +45,10 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
     private EditText phoneEdit;//phone edit filed
     private Button cancelBtn;//cance button
     private Button saveBtn;//save button
+    private Button uploadBtn;//save button
     private int lastfragment;
+    private byte[] photoImage;
+    private ImageView photo;
 
     String[] gender={"Male","Female","Preferred not to say"};
     String selectedGender="";
@@ -78,6 +84,8 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
         phoneEdit = findViewById(R.id.et_phoneno);
         cancelBtn = findViewById(R.id.btncancel);
         saveBtn = findViewById(R.id.btnsave);
+        uploadBtn = findViewById(R.id.btnupload);
+        photo= findViewById(R.id.photo);
 
         //get intent for current user
         currentUser = (User) getIntent().getSerializableExtra("user");
@@ -87,6 +95,10 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
         lastnameEdit.setText(currentUser.getLastname());
         phoneEdit.setText(currentUser.getPhoneNo());
         dateBtn.setText(currentUser.getBdate());
+        photoImage= currentUser.getPhoto();
+        if(photoImage!=null){
+            photo.setImageBitmap(getImage(photoImage));
+        }
 
         //initiate database access and open database
         DatabaseAccess DB = DatabaseAccess.getInstance(this);

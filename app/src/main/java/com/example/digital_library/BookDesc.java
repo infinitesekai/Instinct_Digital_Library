@@ -23,6 +23,8 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import static com.example.digital_library.util.Utils.getImage;
+
 
 //academic qualification
 public class BookDesc extends AppCompatActivity {
@@ -69,14 +71,10 @@ public class BookDesc extends AppCompatActivity {
         BookInfo book_record=databaseAccess.DisplayBook(bookTitle);
 
         //book details information display
-        cover.findViewById(R.id.cover);
-        author=findViewById(R.id.tvauthor);
-        genre=findViewById(R.id.tvGenre);
-        synopsis=findViewById(R.id.tvSynopsis);
-        country=findViewById(R.id.tvCountry);
-        publisher=findViewById(R.id.tvpublisher);
 
         title.setText(bookTitle);
+        coverImage= book_record.getCover();
+        cover.setImageBitmap(getImage(coverImage));
 
         author.setText(book_record.getAuthor());
         genre.setText(book_record.getGenre());
