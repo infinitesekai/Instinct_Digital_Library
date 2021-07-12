@@ -125,5 +125,17 @@ public class DatabaseAccess<instance> {
         return list_item;
     }
 
+    public BookInfo DisplayBook(String title) {
+        BookInfo book = null;
+        Cursor cursor = database.rawQuery("SELECT title,author,genre,synopsis,country,publisher " +
+                "FROM Book WHERE title = ?", new String[]{title});
+        if (cursor.moveToFirst()) {
+            book= new BookInfo(cursor.getString(0), cursor.getString(1), cursor.getString(2)
+                    , cursor.getString(3), cursor.getString(4), cursor.getString(5));
+        }
+        cursor.close();
+        return book;
+    }
+
 
 }

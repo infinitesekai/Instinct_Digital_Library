@@ -24,7 +24,7 @@ import java.util.Objects;
 public class HomePage extends Fragment implements View.OnClickListener {
 
     private static final String TAG = HomePage.class.getSimpleName();
-    public CardView academic_qualification, exam_check, personality_check,tertiary_info,check_in, exam_timetable;
+    public CardView booklist, exam_check, personality_check,check_in;
     private User currentUser;
     VideoView videoView;
     private boolean mVolumePlaying = false;
@@ -43,7 +43,7 @@ public class HomePage extends Fragment implements View.OnClickListener {
         nameText.setText("Hello, " + currentUser.getFirstname());
 
         //reference to view by id
-        academic_qualification = (CardView)v.findViewById(R.id.academic_qualification);
+        booklist = (CardView)v.findViewById(R.id.booklist);
         exam_check = (CardView)v.findViewById(R.id.exam_check);
         personality_check = (CardView)v.findViewById(R.id.personality_test);
         check_in = (CardView)v.findViewById(R.id.check_in);
@@ -68,7 +68,7 @@ public class HomePage extends Fragment implements View.OnClickListener {
 
 
         //on click listener on card view
-        academic_qualification.setOnClickListener(this);
+        booklist.setOnClickListener(this);
         exam_check.setOnClickListener(this);
         personality_check.setOnClickListener(this);
         check_in.setOnClickListener(this);
@@ -111,12 +111,11 @@ public class HomePage extends Fragment implements View.OnClickListener {
         Intent i;
 
         switch (v.getId()){
-//            case R.id.academic_qualification:
-//                i= new Intent(getActivity(), Academic_Qualification.class);
-//                i.putExtra("user",currentUser);
-//                i.putExtra("ICNo", currentUser.getICNo());
-//                startActivity(i);
-//                break;
+            case R.id.booklist:
+                i= new Intent(getActivity(), BookList.class);
+                i.putExtra("user",currentUser);
+                startActivity(i);
+                break;
 //            case R.id.exam_check:
 //                i = new Intent(getActivity(), ExamResultForm.class);
 //                i.putExtra("user",currentUser);

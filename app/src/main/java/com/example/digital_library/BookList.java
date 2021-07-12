@@ -75,7 +75,7 @@ public class BookList extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //get selected child name from list according to the position
-                String bookName=book_list.getItemAtPosition(position).toString();
+                String bookTitle=book_list.getItemAtPosition(position).toString();
 
 
                 Intent i;
@@ -83,6 +83,7 @@ public class BookList extends AppCompatActivity {
                 //start intent to navigate to respective page according to application status
                 i= new Intent(BookList.this, BookDesc.class);
                 i.putExtra("user",currentUser);
+                i.putExtra("bookTitle",bookTitle);
                 startActivity(i);
 
 
