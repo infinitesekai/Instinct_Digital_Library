@@ -12,45 +12,42 @@ import android.widget.Button;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-    public Button btn_student_home, btn_parent_home;
-    private User currentUser;
+    public Button btn_student_home, btn_parent_home;//student home button,parent home button
+    private User currentUser;//current user
     private int lastfragment;
+
+    //navigation bar
     private BottomNavigationView bottomNav;
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
             Fragment selectedFragment = null;
-
             switch (item.getItemId()) {
                 case R.id.nav_home:
-                    if(lastfragment!=R.id.nav_home) {
-                        selectedFragment = new HomePage();
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable("user",currentUser);
-                        selectedFragment.setArguments(bundle);
-                        lastfragment = R.id.nav_home;
-                    }
-                    break;
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);//pass the value
 
+                    selectedFragment = new HomePage();
+                    selectedFragment.setArguments(bundle);
+                    lastfragment = R.id.nav_home;
+                    break;
 
                 case R.id.nav_profile:
-                    if(lastfragment!=R.id.nav_profile) {
-                        selectedFragment = (Profile)new Profile();
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable("user",currentUser);
-                        selectedFragment.setArguments(bundle);
-                        lastfragment = R.id.nav_profile;
-                    }
+                    selectedFragment = (Profile)new Profile();
+                    bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);//pass the value
+                    selectedFragment.setArguments(bundle);
+                    lastfragment = R.id.nav_profile;
                     break;
                 case R.id.nav_search:
-                    if(lastfragment!=R.id.nav_search) {
-                        selectedFragment = new SearchPage();
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable("user",currentUser);
-                        selectedFragment.setArguments(bundle);
-                        lastfragment = R.id.nav_search;
-                    }
+
+                    bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);//pass the value
+
+                    selectedFragment = new SearchPage();
+                    selectedFragment.setArguments(bundle);
+                    lastfragment = R.id.nav_search;
                     break;
             }
 
@@ -63,8 +60,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //get intent for current user
         currentUser = (User) getIntent().getSerializableExtra("user");
         lastfragment = 0;
+
+        //navigation bar
         bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         bottomNav.postDelayed(new Runnable() {
@@ -73,23 +74,6 @@ public class MainActivity extends AppCompatActivity {
                 bottomNav.setSelectedItemId(bottomNav.getMenu().getItem(lastfragment).getItemId());
             }
         },100);
-//        if (currentUser.getRole() == 0) {
-//            Fragment fragment = new HomePage();
-//            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//            transaction.replace(R.id.fragment_container, fragment);
-//            transaction.commit();
-//        } else {
-//            Fragment fragment = new HomePage_Student();
-//            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//            transaction.replace(R.id.fragment_container, fragment);
-//            transaction.commit();
-//        }
-        Fragment fragment = new HomePage();
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, fragment);
-            transaction.commit();
-
-
 
     }
 }

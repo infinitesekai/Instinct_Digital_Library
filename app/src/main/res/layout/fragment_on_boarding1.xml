@@ -10,7 +10,7 @@
 
     <ImageView
         android:id="@+id/img_book"
-        android:layout_width="246dp"
+        android:layout_width="300dp"
         android:layout_height="327dp"
         android:layout_marginStart="63dp"
         android:layout_marginTop="52dp"
@@ -21,20 +21,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.12"
-        app:srcCompat="@drawable/book1" />
+        app:srcCompat="@drawable/reading" />
 
 
     <TextView
-        android:id="@+id/tx_wecome"
+        android:id="@+id/tx_welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="130dp"
+        android:layout_marginStart="70dp"
         android:layout_marginEnd="130dp"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
-        android:text="Welcome"
+        android:text="Glad You're Here!"
         android:textColor="@color/black"
-        android:textSize="48sp"
+        android:textSize="40sp"
         android:translationX="-13dp"
         app:layout_constraintBottom_toTopOf="@+id/tx_1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +45,7 @@
 
     <TextView
         android:id="@+id/tx_1"
-        android:layout_width="200dp"
+        android:layout_width="250dp"
         android:layout_height="96dp"
         android:layout_marginStart="150dp"
         android:layout_marginTop="2dp"
@@ -53,7 +53,7 @@
         android:layout_marginBottom="106dp"
         android:fontFamily="sans-serif-light"
         android:gravity="center"
-        android:text="A Great Place for Education"
+        android:text="Reading is Dreaming with Eyes Wide Open"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="22sp"
@@ -61,7 +61,7 @@
         app:layout_constraintBottom_toTopOf="@+id/img_baddp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tx_wecome" />
+        app:layout_constraintTop_toBottomOf="@+id/tx_welcome" />
 
     <TextView
         android:id="@+id/tx_companyname"

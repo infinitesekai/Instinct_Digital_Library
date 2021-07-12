@@ -22,14 +22,14 @@
         app:layout_constraintTop_toBottomOf="@+id/tx_1" />
 
     <TextView
-        android:id="@+id/tx_wecome"
+        android:id="@+id/tx_welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginEnd="83dp"
         android:layout_marginBottom="304dp"
         android:fontFamily="sans-serif-medium"
-        android:text="Career Test"
+        android:text="Read a Book"
         android:textColor="@color/black"
         android:textSize="48sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -40,14 +40,14 @@
 
     <TextView
         android:id="@+id/tx_1"
-        android:layout_width="200dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="105dp"
+        android:layout_marginStart="80dp"
         android:layout_marginTop="31dp"
         android:layout_marginEnd="106dp"
         android:layout_marginBottom="208dp"
         android:fontFamily="sans-serif-light"
-        android:text="Find the Right Path for Children"
+        android:text="The MORE that You Read, The MORE You Will Know"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="22sp"
@@ -55,12 +55,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tx_wecome" />
+        app:layout_constraintTop_toBottomOf="@+id/tx_welcome" />
 
     <ImageView
         android:id="@+id/img_book"
-        android:layout_width="246dp"
-        android:layout_height="327dp"
+        android:layout_width="350dp"
+        android:layout_height="357dp"
         android:layout_marginStart="63dp"
         android:layout_marginTop="52dp"
         android:layout_marginEnd="63dp"
@@ -71,6 +71,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.031"
-        app:srcCompat="@drawable/brain1" />
+        app:srcCompat="@drawable/book" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

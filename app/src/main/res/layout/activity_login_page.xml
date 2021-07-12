@@ -121,7 +121,7 @@
             android:layout_width="125dp"
             android:layout_height="48dp"
             android:layout_gravity="center"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/rounded_btn_black"
             android:fontFamily="@font/robotoregular"
             android:text="Login"
@@ -132,7 +132,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="New User? Create an Account"
             android:shadowColor="#ECE6E6"/>

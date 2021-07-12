@@ -24,14 +24,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Introductory extends AppCompatActivity {
-    ImageView img_name,img_education;
+    ImageView img_name,img_library;
     LottieAnimationView openingAnimationView;
 
     private static final int NUM_PAGES = 2;//fragment page=2
     private ViewPager2 viewPager;//view page
     private ScreenSlidePageAdapter pageAdapter;// ScreenSlidePageAdapter
     private List<Fragment> fragments;//fragment list
-    private Button btnGetStarted;//get started button
+    private Button btn_start;//start button
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +39,12 @@ public class Introductory extends AppCompatActivity {
         setContentView(R.layout.activity_introductory);
         //reference to view by id
         img_name =findViewById(R.id.Img_Name);
-        img_education =findViewById(R.id.Img_Education);
+        img_library =findViewById(R.id.Img_Library);
         openingAnimationView =findViewById(R.id.opening);
-        btnGetStarted = findViewById(R.id.btn_get_started);
+        btn_start = findViewById(R.id.btn_start);
 
         //on click listener for export button
-        btnGetStarted.setOnClickListener(new View.OnClickListener() {
+        btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Introductory.this,Login_page.class);
@@ -71,7 +71,7 @@ public class Introductory extends AppCompatActivity {
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
                 Log.i("test.......", "onPageSelected: "+position);
-                btnGetStarted.setVisibility(position==fragments.size()-1?View.VISIBLE:View.GONE);
+                btn_start.setVisibility(position==fragments.size()-1?View.VISIBLE:View.GONE);
             }
 
             @Override
@@ -81,7 +81,7 @@ public class Introductory extends AppCompatActivity {
         });
 
         //jason animation translation
-        img_education.animate().translationY(2000).setDuration(3000).setStartDelay(4000);
+        img_library.animate().translationY(2000).setDuration(3000).setStartDelay(4000);
         img_name.animate().translationY(2000).setDuration(3000).setStartDelay(4000);
         openingAnimationView.animate().translationY(2000).setDuration(3000).setStartDelay(4000).setListener(new Animator.AnimatorListener() {
             @Override
