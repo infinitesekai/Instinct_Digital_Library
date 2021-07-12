@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="app_name">Digital Library</string>
+    <string name="title_activity_result_personality_test">title</string>
+    <string name="hello_blank_fragment">Notif</string>
+    <string name="academic_check">Academic Qualification</string>
+    <string name="exam_check">Check Exam Result</string>
+    <string name="personality_test">Personality and Career Test</string>
+    <string name="student_home">Student</string>
+    <string name="parent_home">Parent</string>
+    <string name="test_title">Personality and Career Test</string>
+    <string name="taking_test">Take Test</string>
+    <string name="test_desc">Which Career Pathway is right for you?</string>
+    <string name="tertiary_info">Tertiary Education Information</string>
+    <string name="exam_timetable">Exam Timetable</string>
+    <string name="check_in">Attendance Check-in</string>
+    <string name="question">Question </string>
+    <string name="question_no">no/total</string>
+    <string name="starting">0</string>
+    <string name="submission_test">Are you sure you want to submit your test?</string>
+    <string name="sub_cancel">Cancel</string>
+    <string name="sub_confirm">Submit</string>
+    <string name="export">Export</string>
+    <string name="quit">Quit</string>
+    <string name="delete">delete</string>
+    <string name="explanation_result">
+        The mixed questions related to RIASEC are given to the tester.
+        For example, if you are agreed to statement " I like to work on cars",
+        the total of Realistic is increment by 1. </string>
+    <string name="people"> These people </string>
+    <string name="realistic"> Good college majors for Realistic people are…</string>
+    <string name="investigative">Good college majors for Investigative people are…</string>
+    <string name="artistic">Good college majors for Artistic people are…</string>
+    <string name="social">Good college majors for Social people are…</string>
+    <string name="enterprising">Good college majors for Enterprising people are…</string>
+    <string name="conventional">Good college majors for Conventional people are…</string>
+
+</resources>
