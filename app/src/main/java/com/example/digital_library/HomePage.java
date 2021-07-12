@@ -56,7 +56,7 @@ public class HomePage extends Fragment implements View.OnClickListener {
                 "android.resource://" +
                         requireActivity().getPackageName() +
                         "/" +
-                        R.raw.usaha_selenggara_encoded;
+                        R.raw.hamlet;
         Uri uri = Uri.parse(videoPath);
         videoView.setVideoURI(uri);
 

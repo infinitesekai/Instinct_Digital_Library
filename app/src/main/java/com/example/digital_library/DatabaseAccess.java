@@ -107,5 +107,23 @@ public class DatabaseAccess<instance> {
         return true;
     }
 
+    public List<String> getBookList() {
+
+        List<String> list_item = new ArrayList<String>();
+
+        Cursor cursor = database.rawQuery("SELECT title FROM Book",null);
+
+
+        if (cursor.moveToFirst()) {
+            do {
+                String book = cursor.getString(0);
+                BookList.list_item.add(book);//add the book name into the list in BookList.java
+
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return list_item;
+    }
+
 
 }
