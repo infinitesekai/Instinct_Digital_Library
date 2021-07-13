@@ -14,18 +14,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-import com.example.digital_library.FunctionName;
-import com.example.digital_library.ListViewAdapter;
-import com.example.digital_library.R;
-import com.example.digital_library.User;
 
 
 import java.util.ArrayList;
 
-public class SearchPage extends Fragment implements SearchView.OnQueryTextListener{
+public class FavouritePage extends Fragment implements SearchView.OnQueryTextListener{
 
     SearchView searchView;
     ListView listView;
@@ -39,7 +33,7 @@ public class SearchPage extends Fragment implements SearchView.OnQueryTextListen
     @Nullable
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_search_page, container, false);
+        View v = inflater.inflate(R.layout.fragment_fav_page, container, false);
 
         Bundle bundle = getArguments();
         currentUser = (User) bundle.getSerializable("user");

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,13 +14,6 @@ import androidx.annotation.NonNull;
 
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
-import com.example.digital_library.databinding.ActivityBookGenreBinding;
 
 public class BookGenre extends AppCompatActivity implements View.OnClickListener {
 
@@ -88,7 +80,7 @@ public class BookGenre extends AppCompatActivity implements View.OnClickListener
                     lastfragment = R.id.nav_profile;
                     break;
                 case R.id.nav_search:
-                    selectedFragment = new SearchPage();
+                    selectedFragment = new FavouritePage();
                     bundle = new Bundle();
                     bundle.putSerializable("user",currentUser);
                     selectedFragment.setArguments(bundle);

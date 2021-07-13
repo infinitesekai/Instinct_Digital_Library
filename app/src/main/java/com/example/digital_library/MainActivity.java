@@ -3,7 +3,6 @@ package com.example.digital_library;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -45,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                     bundle = new Bundle();
                     bundle.putSerializable("user",currentUser);//pass the value
 
-                    selectedFragment = new SearchPage();
+                    selectedFragment = new FavouritePage();
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_search;
                     break;

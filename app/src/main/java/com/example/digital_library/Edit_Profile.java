@@ -6,14 +6,11 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import android.icu.text.UnicodeSetSpanner;
 import android.icu.util.Calendar;
 import android.net.Uri;
 import android.os.Build;
@@ -31,14 +28,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.example.digital_library.util.MyApplication;
-import com.example.digital_library.util.Utils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.ArrayList;
 
 import static com.example.digital_library.util.Utils.getByte;
 import static com.example.digital_library.util.Utils.getImage;
@@ -331,7 +323,7 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
                     bundle = new Bundle();
                     bundle.putSerializable("user",currentUser);//pass the value
 
-                        selectedFragment = new SearchPage();
+                        selectedFragment = new FavouritePage();
 
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_search;

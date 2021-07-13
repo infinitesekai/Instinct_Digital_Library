@@ -207,5 +207,46 @@ public class DatabaseAccess<instance> {
         return link ;
     }
 
+    public boolean insertFav(String email, String title) {
+
+        String insertfav = "insert into Favourite(email,title) values ( '" + email + "','" + title + "');";
+
+        try {
+            database.execSQL(insertfav);
+        } catch (RuntimeException e) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean checkFav(String useremail, String title) {
+
+        boolean fav=false;
+        Cursor cursor = database.rawQuery("select email from Favourite where email=? and title=?", new String[]{useremail,title});
+        if (cursor.moveToFirst()) {
+            fav=true;
+        }
+        cursor.close();
+        return fav ;
+    }
+
+    public boolean removeFav(String useremail,String title){
+        String remove = "delete from Favourite where email = '" + useremail + "'and title = '" + title + "'";
+        Boolean result = true;
+        try {
+            database.execSQL(remove);
+        } catch (Exception e) {
+            result = false;
+        }
+        return result;
+    }
+
+    public Cursor getFavList(String useremail){
+        String fav = "select * from Favourite where email = '" + useremail + "'" ;
+        return database.rawQuery(fav,null,null);
+    }
+
+
+
 
 }

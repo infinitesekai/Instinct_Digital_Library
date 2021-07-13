@@ -1,22 +1,14 @@
 package com.example.digital_library;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.print.PrintDocumentAdapter;
-import android.print.PrintManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,10 +24,12 @@ public class BookDesc extends AppCompatActivity {
     private TextView title,author,genre,synopsis,country,publisher;
     private byte[] coverImage;
     String bookTitle;
-    Button btnread,btndownload;//download button
+    Button btnread,btndownload,btnfav;//download button
     private User currentUser;//current user
     private int lastfragment;//indicate last fragment for navigation bar
     private ImageView cover;
+    private boolean check;
+    DatabaseAccess databaseAccess;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,10 +55,33 @@ public class BookDesc extends AppCompatActivity {
 
         btnread=findViewById(R.id.btnread);
         btndownload=findViewById(R.id.btndownload);
+        btnfav=findViewById(R.id.favbutton);
+
+
 
         //initiate database access and open database
-        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+        databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
+
+        boolean checkfav=databaseAccess.checkFav(currentUser.getEmail(),bookTitle);
+        if(checkfav){
+            btnfav.setBackgroundResource(R.drawable.ic_red_favorite_24);
+            btnfav.setSelected(true);
+            check=true;
+        }
+        else{
+            btnfav.setBackgroundResource(R.drawable.ic_shadow_favorite_24);
+            btnfav.setSelected(false);
+            check=false;
+        }
+
+        btnfav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                favclick(currentUser.getEmail(),bookTitle,btnfav,check);
+            }
+        });
+
 
 
         //call database access method to display qualification information
@@ -159,7 +176,7 @@ public class BookDesc extends AppCompatActivity {
                     lastfragment = R.id.nav_profile;
                     break;
                 case R.id.nav_search:
-                    selectedFragment = new SearchPage();
+                    selectedFragment = new FavouritePage();
                     bundle = new Bundle();
                     bundle.putSerializable("user",currentUser);
                     selectedFragment.setArguments(bundle);
@@ -169,6 +186,39 @@ public class BookDesc extends AppCompatActivity {
             return false;
         }
     };
+
+    private void favclick(String useremail,String bookTitle,Button btnfav,boolean thischeck){
+        if(!thischeck){
+
+            boolean insert=databaseAccess.insertFav(currentUser.getEmail(),bookTitle);
+            if(insert){
+                Toast.makeText(BookDesc.this,"Added to Favourite.",Toast.LENGTH_SHORT).show();
+
+            }
+            else{
+                Toast.makeText(BookDesc.this,"Failed.",Toast.LENGTH_SHORT).show();
+
+            }
+            btnfav.setBackgroundResource(R.drawable.ic_red_favorite_24);
+            btnfav.setSelected(true);
+            check=true;
+        }
+        else{
+            boolean remove=databaseAccess.removeFav(currentUser.getEmail(),bookTitle);
+            if(remove){
+                Toast.makeText(BookDesc.this,"Removed from Favourite.",Toast.LENGTH_SHORT).show();
+
+            }
+            else{
+                Toast.makeText(BookDesc.this,"Failed.",Toast.LENGTH_SHORT).show();
+
+            }
+            btnfav.setBackgroundResource(R.drawable.ic_shadow_favorite_24);
+            btnfav.setSelected(false);
+            check=false;
+        }
+    }
+
 
 
 
