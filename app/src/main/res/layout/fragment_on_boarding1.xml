@@ -70,7 +70,7 @@
         android:layout_marginTop="212dp"
         android:layout_marginBottom="55dp"
         android:gravity="center"
-        android:text="mini_Congress © 2021"
+        android:text="Instinct Corp. © 2021"
         android:textSize="20sp"
         android:translationY="-35dp"
         app:layout_constraintBottom_toTopOf="@+id/img_baddp"
