@@ -86,7 +86,7 @@
                                 android:adjustViewBounds="true"
                                 android:background="?attr/selectableItemBackground"
                                 android:scaleType="fitXY"
-                                android:src="@drawable/user_pic" />
+                                android:src="@drawable/coverdefault" />
 
                         </androidx.cardview.widget.CardView>
                     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,16 +13,24 @@
         android:maxSdkVersion="29"
         tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.android.browser.permission.READ_HISTORY_BOOKMARKS" />
+    <uses-permission android:name="com.android.browser.permission.WRITE_HISTORY_BOOKMARKS" />
 
     <application
         android:name=".util.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Digital_Library">
-        <activity android:name=".BookDownload"></activity>
+        <activity
+            android:name=".BookGenre"
+            android:label="@string/title_activity_book_genre"
+            android:theme="@style/Theme.Digital_Library.NoActionBar"></activity>
+        <activity android:name=".BookDownload" />
         <activity android:name=".BookRead" />
         <activity android:name=".BookDesc" />
         <activity android:name=".BookList" />

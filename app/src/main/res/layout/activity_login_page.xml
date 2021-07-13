@@ -33,7 +33,7 @@
                     android:fontFamily="@font/robotobold"
                     android:text="Welcome Back"
                     android:textAlignment="center"
-                    android:layout_margin="5dp"
+                    android:layout_margin="10dp"
                     android:textColor="@color/white"
                     android:textSize="30sp"
                     tools:ignore="RtlCompat" />
@@ -43,7 +43,7 @@
                     android:layout_width="225dp"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/mobile_login_8"/>
+                    android:src="@drawable/readgif_clear"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
         </FrameLayout>
         <TableLayout
@@ -121,7 +121,7 @@
             android:layout_width="125dp"
             android:layout_height="48dp"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/rounded_btn_black"
             android:fontFamily="@font/robotoregular"
             android:text="Login"

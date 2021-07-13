@@ -43,7 +43,7 @@ public class HomePage extends Fragment implements View.OnClickListener {
         nameText.setText("Hello, " + currentUser.getFirstname());
 
         //reference to view by id
-        booklist = (CardView)v.findViewById(R.id.booklist);
+        booklist = (CardView)v.findViewById(R.id.bookcollection);
         exam_check = (CardView)v.findViewById(R.id.exam_check);
         personality_check = (CardView)v.findViewById(R.id.personality_test);
         check_in = (CardView)v.findViewById(R.id.check_in);
@@ -111,8 +111,8 @@ public class HomePage extends Fragment implements View.OnClickListener {
         Intent i;
 
         switch (v.getId()){
-            case R.id.booklist:
-                i= new Intent(getActivity(), BookList.class);
+            case R.id.bookcollection:
+                i= new Intent(getActivity(), BookGenre.class);
                 i.putExtra("user",currentUser);
                 startActivity(i);
                 break;

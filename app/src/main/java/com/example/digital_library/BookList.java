@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -31,6 +32,7 @@ public class BookList extends AppCompatActivity {
     ListView book_list;
     public static ArrayList<String> list_item;
     ArrayAdapter adapter;
+    TextView list_title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +41,15 @@ public class BookList extends AppCompatActivity {
 
         currentUser = (User) getIntent().getSerializableExtra("user");
         lastfragment = 0;
+        String genre=getIntent().getStringExtra("genre");
 
         //bottom navigation bar
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
+
+        list_title=findViewById(R.id.list_title);
+
+        list_title.setText("Collection of " + genre);
 
 
         //initiate database access
@@ -58,7 +65,7 @@ public class BookList extends AppCompatActivity {
         //call database method to get application list
         //child added into list_item
         //list_item is the list of application for children
-        databaseAccess.getBookList();
+        databaseAccess.getBookList(genre);
 
         if(list_item.isEmpty()){
             Toast.makeText(BookList.this, "No Books.", Toast.LENGTH_SHORT).show();

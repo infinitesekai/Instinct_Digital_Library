@@ -74,8 +74,8 @@ public class BookDesc extends AppCompatActivity {
         //book details information display
 
         title.setText(bookTitle);
-        coverImage= book_record.getCover();
-        cover.setImageBitmap(getImage(coverImage));
+//        coverImage= book_record.getCover();
+//        cover.setImageBitmap(getImage(coverImage));
 
         author.setText(book_record.getAuthor());
         genre.setText(book_record.getGenre());
@@ -83,7 +83,10 @@ public class BookDesc extends AppCompatActivity {
         country.setText(book_record.getCountry());
         publisher.setText(book_record.getPublisher());
 
-
+        coverImage= databaseAccess.getCover(bookTitle);
+        if(coverImage!=null){
+            cover.setImageBitmap(getImage(coverImage));
+        }
 
         //on click listener for download button
 
@@ -99,6 +102,7 @@ public class BookDesc extends AppCompatActivity {
 
                     Intent i= new Intent(BookDesc.this, BookRead.class);
                     i.putExtra("user",currentUser);
+                    i.putExtra("bookTitle",bookTitle);
                     i.putExtra("readlink",readlink);
                     startActivity(i);}
 
@@ -117,7 +121,8 @@ public class BookDesc extends AppCompatActivity {
 
                 Intent i= new Intent(BookDesc.this, BookDownload.class);
                 i.putExtra("user",currentUser);
-                    i.putExtra("downloadlink",downloadlink);
+                i.putExtra("bookTitle",bookTitle);
+//                    i.putExtra("downloadlink",downloadlink);
                 startActivity(i);}
 
             }

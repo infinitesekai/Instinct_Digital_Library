@@ -110,11 +110,11 @@ public class DatabaseAccess<instance> {
         return true;
     }
 
-    public List<String> getBookList() {
+    public List<String> getBookList(String genre) {
 
         List<String> list_item = new ArrayList<String>();
 
-        Cursor cursor = database.rawQuery("SELECT title FROM Book",null);
+        Cursor cursor = database.rawQuery("SELECT title FROM Book where genre=?",new String[]{genre});
 
 
         if (cursor.moveToFirst()) {
@@ -130,28 +130,28 @@ public class DatabaseAccess<instance> {
 
     public BookInfo DisplayBook(String title) {
         BookInfo book = null;
-        Cursor cursor = database.rawQuery("SELECT title,author,genre,synopsis,country,publisher,cover " +
+        Cursor cursor = database.rawQuery("SELECT title,author,genre,synopsis,country,publisher " +
                 "FROM Book WHERE title = ?", new String[]{title});
         if (cursor.moveToFirst()) {
             book= new BookInfo(cursor.getString(0), cursor.getString(1), cursor.getString(2)
-                    , cursor.getString(3), cursor.getString(4), cursor.getString(5),cursor.getBlob(6));
+                    , cursor.getString(3), cursor.getString(4), cursor.getString(5));
         }
         cursor.close();
         return book;
     }
 
-//    public byte[] getCover(String title){
-//        byte[] result=null;
-//        Cursor cursor = database.rawQuery("SELECT cover " +
-//                "FROM Book WHERE title = ?", new String[]{title});
-//
-//        if(cursor.moveToFirst()){
-//            do{
-//                result=cursor.getBlob(0);
-//            }while (cursor.moveToNext());
-//        }
-//        return result;
-//    }
+    public byte[] getCover(String title){
+        byte[] result=null;
+        Cursor cursor = database.rawQuery("SELECT cover " +
+                "FROM Book WHERE title = ?", new String[]{title});
+
+        if(cursor.moveToFirst()){
+            do{
+                result=cursor.getBlob(0);
+            }while (cursor.moveToNext());
+        }
+        return result;
+    }
 
         public byte[] getPic(String email){
         byte[] result=null;
