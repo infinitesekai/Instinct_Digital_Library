@@ -5,23 +5,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.webkit.WebView;
 
-public class BookRead extends AppCompatActivity {
+public class BookDownload extends AppCompatActivity {
 
     private WebView webView;
-    String bookTitle;
-    String pdflink;
+//    String bookTitle;
+    String downloadlink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_read);
 //        bookTitle=getIntent().getStringExtra("bookTitle");
-        pdflink=getIntent().getStringExtra("readlink");
+        downloadlink=getIntent().getStringExtra("downloadlink");
 
 //        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
 //        databaseAccess.open();
 //
-//        pdflink=databaseAccess.getLink(bookTitle);
+//        downloadlink=databaseAccess.getDownloadLink(bookTitle);
 
 
         webView= findViewById(R.id.bookWebView);
@@ -29,7 +29,7 @@ public class BookRead extends AppCompatActivity {
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setAllowContentAccess(true);
         webView.getSettings().setAllowFileAccess(true);
-         webView.loadUrl(pdflink);
+        webView.loadUrl(downloadlink);
 
     }
 }

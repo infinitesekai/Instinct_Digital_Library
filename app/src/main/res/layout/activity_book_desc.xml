@@ -245,17 +245,33 @@
 
                 </LinearLayout>
 
-                <Button
-                    android:id="@+id/btnread"
-                    android:layout_width="100dp"
-                    android:layout_height="40dp"
-                    android:textColor="@color/white"
-                    android:text="Read"
-                    android:background="@drawable/rounded_btn_black"
-                    android:stateListAnimator="@null"
-                    android:layout_marginLeft="150dp"
-                    android:layout_marginTop="20dp"
-                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <Button
+                        android:id="@+id/btnread"
+                        android:layout_width="120dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/rounded_btn_black"
+                        android:text="Read"
+                        android:textColor="@color/white" />
+
+                    <Button
+                        android:id="@+id/btndownload"
+                        android:layout_width="120dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginLeft="60dp"
+                        android:background="@drawable/rounded_btn_black"
+                        android:text="Download"
+                        android:textColor="@color/white" />
+                </LinearLayout>
 
 
             </androidx.appcompat.widget.LinearLayoutCompat>

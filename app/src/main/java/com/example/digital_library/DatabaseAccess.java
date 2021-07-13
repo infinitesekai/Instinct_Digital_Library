@@ -176,7 +176,7 @@ public class DatabaseAccess<instance> {
 //           //return false;
 //        }
 //        //return true;
-        SQLiteDatabase database=this.openHelper.getReadableDatabase();
+
         ContentValues cv=new ContentValues();
         cv.put("photo",image);
         database.update("User",cv,"email=?",new String[]{email});
@@ -189,6 +189,18 @@ public class DatabaseAccess<instance> {
         Cursor cursor = database.rawQuery("SELECT pdflink FROM Book WHERE title=?", new String[]{title});
         if (cursor.moveToFirst()) {
             link  = new String(cursor.getString(0));
+
+        }
+        cursor.close();
+        return link ;
+    }
+
+    public String getDownloadLink(String title) {
+        String link = "";
+        Cursor cursor = database.rawQuery("SELECT downloadlink FROM Book WHERE title=?", new String[]{title});
+        if (cursor.moveToFirst()) {
+            if(!cursor.isNull(0))
+                link  = new String(cursor.getString(0));
 
         }
         cursor.close();

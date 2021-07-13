@@ -32,7 +32,7 @@ public class BookDesc extends AppCompatActivity {
     private TextView title,author,genre,synopsis,country,publisher;
     private byte[] coverImage;
     String bookTitle;
-    Button btnread;//download button
+    Button btnread,btndownload;//download button
     private User currentUser;//current user
     private int lastfragment;//indicate last fragment for navigation bar
     private ImageView cover;
@@ -60,6 +60,7 @@ public class BookDesc extends AppCompatActivity {
 
 
         btnread=findViewById(R.id.btnread);
+        btndownload=findViewById(R.id.btndownload);
 
         //initiate database access and open database
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
@@ -82,19 +83,46 @@ public class BookDesc extends AppCompatActivity {
         country.setText(book_record.getCountry());
         publisher.setText(book_record.getPublisher());
 
-        databaseAccess.close();//close database access
+
 
         //on click listener for download button
 
         btnread.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i= new Intent(BookDesc.this, BookRead.class);
-                i.putExtra("user",currentUser);
-                i.putExtra("bookTitle",bookTitle);
-                startActivity(i);
+
+                String readlink=databaseAccess.getDownloadLink(bookTitle);
+                if( readlink==""){
+                    Toast.makeText(BookDesc.this,"No resources.",Toast.LENGTH_SHORT).show();
+                }else{
+
+
+                    Intent i= new Intent(BookDesc.this, BookRead.class);
+                    i.putExtra("user",currentUser);
+                    i.putExtra("readlink",readlink);
+                    startActivity(i);}
+
             }
         });
+
+        btndownload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String downloadlink=databaseAccess.getDownloadLink(bookTitle);
+                if( downloadlink==""){
+                    Toast.makeText(BookDesc.this,"No resources.",Toast.LENGTH_SHORT).show();
+                }else{
+
+
+                Intent i= new Intent(BookDesc.this, BookDownload.class);
+                i.putExtra("user",currentUser);
+                    i.putExtra("downloadlink",downloadlink);
+                startActivity(i);}
+
+            }
+        });
+
 
 
 
