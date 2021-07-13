@@ -1,18 +1,23 @@
 package com.example.digital_library;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Reels extends AppCompatActivity {
     private static final String TAG = Reels.class.getSimpleName();
@@ -32,6 +37,10 @@ public class Reels extends AppCompatActivity {
 
         currentUser = (User) getIntent().getSerializableExtra("user");
         lastfragment = 0;
+
+        //navigation bar
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         reeltitle= findViewById(R.id.reel_title);
         volume = findViewById(R.id.volume_std);
@@ -127,4 +136,38 @@ public class Reels extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+            Fragment selectedFragment = null;
+
+            switch (item.getItemId()) {
+                case R.id.nav_home:
+                    selectedFragment = new HomePage();
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);
+                    selectedFragment.setArguments(bundle);
+                    lastfragment = R.id.nav_home;
+                    break;
+
+                case R.id.nav_profile:
+                    selectedFragment = new Profile();
+                    bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);
+                    selectedFragment.setArguments(bundle);
+                    lastfragment = R.id.nav_profile;
+                    break;
+                case R.id.nav_search:
+                    selectedFragment = new FavouritePage();
+                    bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);
+                    selectedFragment.setArguments(bundle);
+                    lastfragment = R.id.nav_search;
+            }
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+            return false;
+        }
+    };
 }
