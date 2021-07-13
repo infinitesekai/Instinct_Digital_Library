@@ -24,7 +24,7 @@ import java.util.Objects;
 public class HomePage extends Fragment implements View.OnClickListener {
 
     private static final String TAG = HomePage.class.getSimpleName();
-    public CardView booklist, exam_check, personality_check,check_in;
+    public CardView booklist, reel, personality_check,check_in;
     private User currentUser;
     VideoView videoView;
     private boolean mVolumePlaying = false;
@@ -44,7 +44,7 @@ public class HomePage extends Fragment implements View.OnClickListener {
 
         //reference to view by id
         booklist = (CardView)v.findViewById(R.id.bookcollection);
-        exam_check = (CardView)v.findViewById(R.id.exam_check);
+        reel = (CardView)v.findViewById(R.id.reel);
         personality_check = (CardView)v.findViewById(R.id.personality_test);
         check_in = (CardView)v.findViewById(R.id.check_in);
 
@@ -69,7 +69,7 @@ public class HomePage extends Fragment implements View.OnClickListener {
 
         //on click listener on card view
         booklist.setOnClickListener(this);
-        exam_check.setOnClickListener(this);
+        reel.setOnClickListener(this);
         personality_check.setOnClickListener(this);
         check_in.setOnClickListener(this);
 
@@ -116,12 +116,11 @@ public class HomePage extends Fragment implements View.OnClickListener {
                 i.putExtra("user",currentUser);
                 startActivity(i);
                 break;
-//            case R.id.exam_check:
-//                i = new Intent(getActivity(), ExamResultForm.class);
-//                i.putExtra("user",currentUser);
-//                i.putExtra("ICNo", currentUser.getICNo());
-//                startActivity(i);
-//                break;
+            case R.id.reel:
+                i = new Intent(getActivity(), Reels.class);
+                i.putExtra("user",currentUser);
+                startActivity(i);
+                break;
 //            case R.id.personality_test:
 //                i=new Intent(getActivity(), PersonalityTestHome.class);
 //                i.putExtra("user",currentUser);

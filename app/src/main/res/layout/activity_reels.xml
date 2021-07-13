@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Reels"
+    android:background="@drawable/bg_gradient">
+
+    <FrameLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="180dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reels"
+            android:fontFamily="@font/robotobold"
+            android:textSize="30dp"
+            android:textColor="@color/white"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="50dp"/>
+
+
+    </FrameLayout>
+
+
+            <View
+                android:id="@+id/bg_round_rec"
+                android:layout_width="match_parent"
+                android:layout_height="1000dp"
+                android:layout_marginTop="108dp"
+                android:background="@drawable/bg_round_rec"
+                android:foregroundGravity="bottom" />
+
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="140dp"
+    android:layout_marginStart="15dp"
+    >
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:id="@+id/reel_title"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="23dp"
+                    android:fontFamily="@font/robotobold"
+                    android:text="Enjoy."
+                    android:textColor="@color/text_color"
+                    android:textSize="26sp" />
+
+            </FrameLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/reelcard"
+                android:layout_width="380dp"
+                android:layout_height="280dp"
+                android:layout_gravity="center"
+                android:elevation="14dp"
+                app:cardCornerRadius="8dp"
+                app:cardPreventCornerOverlap="false"
+                android:layout_marginTop="70dp"
+                >
+
+                <VideoView
+                    android:id="@+id/reel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:layout_gravity="center"
+                    android:background="?attr/selectableItemBackground"
+                    android:scaleType="fitXY"/>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/volume_std"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="start"
+                    android:background="@drawable/ic_baseline_volume_up_24"/>
+
+            </androidx.cardview.widget.CardView>
+    <Button
+        android:id="@+id/shuffle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="380dp"
+        android:background="@drawable/rounded_btn_black"
+        android:text="Shuffle"
+        android:textColor="@color/white"
+        android:textSize="16sp"/>
+
+</RelativeLayout>
+
+
+
+
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="44dp" />
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/cardview_light_background"
+        app:menu="@menu/bottom_navigation">
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
+
+
+</RelativeLayout>
