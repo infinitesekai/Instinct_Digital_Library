@@ -6,43 +6,45 @@
     tools:context=".FavouritePage"
     android:background="@drawable/bg_gradient">
 
-    <!-- TODO: Update blank fragment layout -->
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <FrameLayout
-            android:id="@+id/searchsection"
-            android:layout_width="350dp"
+        <TextView
+            android:id="@+id/list_title"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp">
+            android:text="My Favourite"
+            android:fontFamily="@font/robotobold"
+            android:textSize="30dp"
+            android:textColor="@color/white"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="50dp"/>
 
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/searchView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:queryHint="Search Here"
-                android:iconifiedByDefault="false"
-                android:layout_alignParentTop="true"
-                android:background="@color/white"/>
 
-            <requestFocus />
-        </FrameLayout>
 
-        <FrameLayout
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/searchsection"
-            android:layout_marginTop="20dp">
+        <View
+            android:id="@+id/bg_round_rec"
+            android:layout_width="match_parent"
+            android:layout_height="680dp"
+            android:layout_marginTop="108dp"
+            android:background="@drawable/bg_round_rec"
+            android:foregroundGravity="bottom" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="120dp"
+            android:fillViewport="true">
 
             <ListView
-                android:id="@+id/listview"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:dividerHeight="2dp"
-                android:divider="@color/white" />
-        </FrameLayout>
+                android:layout_height="match_parent"
+                android:id="@+id/fav_list"/>
+
+
+        </ScrollView>
 
     </RelativeLayout>
 

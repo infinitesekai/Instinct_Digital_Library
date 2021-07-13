@@ -241,9 +241,27 @@ public class DatabaseAccess<instance> {
         return result;
     }
 
-    public Cursor getFavList(String useremail){
-        String fav = "select * from Favourite where email = '" + useremail + "'" ;
-        return database.rawQuery(fav,null,null);
+//    public Cursor getFavList(String useremail){
+//        String fav = "select * from Favourite where email = '" + useremail + "'" ;
+//        return database.rawQuery(fav,null,null);
+//    }
+
+    public List<String> getFavList(String useremail) {
+
+        List<String> list_item = new ArrayList<String>();
+
+        Cursor cursor = database.rawQuery("SELECT title FROM Favourite where email = ?",new String[]{useremail});
+
+
+        if (cursor.moveToFirst()) {
+            do {
+                String book = cursor.getString(0);
+               FavouritePage.list_item.add(book);//add the book name into the list in BookList.java
+
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return list_item;
     }
 
 

@@ -100,7 +100,7 @@ public class BookList extends AppCompatActivity {
 
 
     //function for bottom navigation bar
-    //back to Parent Home Page
+    //back to Home Page
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {

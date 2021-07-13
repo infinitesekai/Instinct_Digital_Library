@@ -73,6 +73,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
                         android:fontFamily="@font/robotobold"
                         android:text="Book Title"
                         android:textColor="@color/black"
