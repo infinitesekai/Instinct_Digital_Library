@@ -153,6 +153,7 @@ public class PhysicalReq extends AppCompatActivity implements DatePickerDialog.O
         //Implement dateset listener
         //Gets the month of the year set by the date dialog.
         returnDate = String.format("%d-%d-%d",i,i1+1,i2);
+        dateBtn.setText(returnDate);
 
     }
 

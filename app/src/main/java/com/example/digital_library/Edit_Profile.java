@@ -267,9 +267,7 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
         return super.dispatchTouchEvent(me);
     }
 
-    /**
-     * Hide the keyboard based on the location of the EditText relative to the location the user clicked on, because it cannot be hidden when the user clicked on EditText
-     */
+
     private boolean isShouldHideKeyboard(View v, MotionEvent event) {
         // Check if the resulting focus contains EditText
         if (v != null && (v instanceof EditText)) {
