@@ -1,8 +1,6 @@
 package com.example.digital_library;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import com.example.digital_library.util.MyApplication;
 
 public class Login_page extends AppCompatActivity {
     private EditText useremail,password;//ic number,password text field
@@ -77,7 +73,7 @@ public class Login_page extends AppCompatActivity {
                 btnSignUp.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(Login_page.this, Sign_Up.class));
+                        startActivity(new Intent(Login_page.this, SignUp.class));
                     }
                 });
     }

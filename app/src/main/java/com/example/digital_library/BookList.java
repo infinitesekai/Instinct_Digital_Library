@@ -5,14 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -31,6 +30,7 @@ public class BookList extends AppCompatActivity {
     ListView book_list;
     public static ArrayList<String> list_item;
     ArrayAdapter adapter;
+    TextView list_title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +39,15 @@ public class BookList extends AppCompatActivity {
 
         currentUser = (User) getIntent().getSerializableExtra("user");
         lastfragment = 0;
+        String genre=getIntent().getStringExtra("genre");
 
         //bottom navigation bar
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
+
+        list_title=findViewById(R.id.list_title);
+
+        list_title.setText("Collection of " + genre);
 
 
         //initiate database access
@@ -58,7 +63,7 @@ public class BookList extends AppCompatActivity {
         //call database method to get application list
         //child added into list_item
         //list_item is the list of application for children
-        databaseAccess.getBookList();
+        databaseAccess.getBookList(genre);
 
         if(list_item.isEmpty()){
             Toast.makeText(BookList.this, "No Books.", Toast.LENGTH_SHORT).show();
@@ -95,7 +100,7 @@ public class BookList extends AppCompatActivity {
 
 
     //function for bottom navigation bar
-    //back to Parent Home Page
+    //back to Home Page
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -118,12 +123,12 @@ public class BookList extends AppCompatActivity {
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_profile;
                     break;
-                case R.id.nav_search:
-                    selectedFragment = new SearchPage();
+                case R.id.nav_fav:
+                    selectedFragment = new FavouritePage();
                     bundle = new Bundle();
                     bundle.putSerializable("user",currentUser);
                     selectedFragment.setArguments(bundle);
-                    lastfragment = R.id.nav_search;
+                    lastfragment = R.id.nav_fav;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
             return false;

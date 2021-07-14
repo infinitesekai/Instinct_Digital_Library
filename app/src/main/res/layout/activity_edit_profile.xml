@@ -22,7 +22,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -32,7 +35,7 @@
             <View
                 android:id="@+id/bg_round_rec"
                 android:layout_width="match_parent"
-                android:layout_height="570dp"
+                android:layout_height="670dp"
                 android:layout_marginTop="108dp"
                 android:layout_marginBottom="50dp"
                 android:background="@drawable/bg_round_rec"
@@ -49,12 +52,63 @@
                 android:layout_marginBottom="50dp"
                 android:orientation="vertical">
 
-                <!--        <FrameLayout-->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
 
-                <!--            android:layout_width="match_parent"-->
-                <!--            android:layout_height="match_parent"-->
-                <!--            tools:layout_editor_absoluteX="5dp"-->
-                <!--            tools:layout_editor_absoluteY="44dp" />-->
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/covercard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="60dp"
+                        android:layout_marginEnd="60dp"
+                        android:layout_centerHorizontal="true"
+                        android:elevation="14dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardPreventCornerOverlap="false"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/photo"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:adjustViewBounds="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/user_pic" />
+
+                    </androidx.cardview.widget.CardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <Button
+                        android:id="@+id/btnupload"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/rounded_btn_black"
+                        android:text="upload"
+                        android:textColor="@color/white" />
+
+                    <Button
+                        android:id="@+id/btnupdate"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginLeft="60dp"
+                        android:background="@drawable/rounded_btn_black"
+                        android:text="update"
+                        android:textColor="@color/white" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -286,11 +340,11 @@
                         android:text="save"
                         android:textColor="@color/white" />
                 </LinearLayout>
-                <!--    </FrameLayout>-->
+
 
             </androidx.appcompat.widget.LinearLayoutCompat>
         </RelativeLayout>
-
+    </ScrollView>
 
     <FrameLayout
         android:id="@+id/fragment_container"

@@ -13,8 +13,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import static com.example.digital_library.util.Utils.getImage;
 
 public class Profile extends Fragment {
     private Button editBtn,btnLogout;//edit child button,edit profile button,logout button
@@ -26,6 +29,8 @@ public class Profile extends Fragment {
     private TextView phoneText;
     private TextView birthdateText ;
     private DatabaseAccess DB;//database
+    private byte[] photoImage;
+    private ImageView photo;
 
     @Override
     @Nullable
@@ -37,6 +42,10 @@ public class Profile extends Fragment {
         DB = DatabaseAccess.getInstance(getContext());
         DB.open();
         initViews(view);
+        photoImage= DB.getPic(currentUser.getEmail());
+        if(photoImage!=null){
+            photo.setImageBitmap(getImage(photoImage));
+        }
         return view;
     }
 
@@ -53,6 +62,7 @@ public class Profile extends Fragment {
         phoneText = view.findViewById(R.id.tvphoneno);
         birthdateText = view.findViewById(R.id.tvbirthdate);
         btnLogout = view.findViewById(R.id.btn_logout);
+        photo=view.findViewById(R.id.photo);
 
         emailText.setText(currentUser.getEmail());
         firstnameText.setText(currentUser.getFirstname());
@@ -61,6 +71,10 @@ public class Profile extends Fragment {
         phoneText.setText(currentUser.getPhoneNo());
         birthdateText.setText(currentUser.getBdate());
 
+        photoImage= currentUser.getPhoto();
+        if(photoImage!=null){
+        photo.setImageBitmap(getImage(photoImage));
+        }
 
         //on click listener for logout button
         btnLogout.setOnClickListener(v -> {

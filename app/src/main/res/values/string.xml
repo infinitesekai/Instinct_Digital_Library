@@ -1,28 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-    <string name="app_name">Digital Library</string>
-    <string name="title_activity_result_personality_test">title</string>
-    <string name="book">Book List</string>
-    <string name="exam_check">Check Exam Result</string>
-    <string name="personality_test">Personality and Career Test</string>
-    <string name="student_home">Student</string>
-    <string name="parent_home">Parent</string>
-    <string name="test_title">Personality and Career Test</string>
-    <string name="taking_test">Take Test</string>
-    <string name="test_desc">Which Career Pathway is right for you?</string>
-    <string name="tertiary_info">Tertiary Education Information</string>
-    <string name="exam_timetable">Exam Timetable</string>
-    <string name="check_in">Attendance Check-in</string>
-    <string name="question">Question </string>
-    <string name="question_no">no/total</string>
-    <string name="starting">0</string>
-    <string name="submission_test">Are you sure you want to submit your test?</string>
-    <string name="sub_cancel">Cancel</string>
-    <string name="sub_confirm">Submit</string>
-    <string name="export">Export</string>
-    <string name="quit">Quit</string>
-    <string name="delete">delete</string>
-
+    <string name="app_name">Instinct</string>
+    <string name="book">Book Collection</string>
+    <string name="reel">Pages to Reels</string>
+    <string name="physical">Physical Book Request</string>
+    <string name="audio">Audible</string>
 
 </resources>

@@ -7,6 +7,11 @@
     tools:context=".BookDesc"
     android:background="@drawable/bg_gradient">
 
+    <FrameLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="180dp">
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,6 +21,9 @@
         android:textColor="@color/white"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="50dp"/>
+
+
+    </FrameLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -34,6 +42,22 @@
                 android:background="@drawable/bg_round_rec"
                 android:foregroundGravity="bottom" />
 
+            <Button
+                android:id="@+id/sharebutton"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginTop="45dp"
+                android:layout_marginLeft="270dp"
+                android:background="@drawable/ic_baseline_share_24"/>
+
+            <Button
+                android:id="@+id/favbutton"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginTop="45dp"
+                android:layout_marginLeft="330dp"
+                android:background="@drawable/ic_red_favorite_24"/>
+
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
@@ -49,16 +73,21 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
+
+
                     <TextView
                         android:id="@+id/tvtitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
                         android:fontFamily="@font/robotobold"
                         android:text="Book Title"
                         android:textColor="@color/black"
                         android:textSize="20dp" />
+
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -86,7 +115,7 @@
                                 android:adjustViewBounds="true"
                                 android:background="?attr/selectableItemBackground"
                                 android:scaleType="fitXY"
-                                android:src="@drawable/user_pic" />
+                                android:src="@drawable/coverdefault" />
 
                         </androidx.cardview.widget.CardView>
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -245,20 +274,38 @@
 
                 </LinearLayout>
 
-                <Button
-                    android:id="@+id/btndownload"
-                    android:layout_width="100dp"
-                    android:layout_height="40dp"
-                    android:textColor="@color/white"
-                    android:text="Download"
-                    android:background="@drawable/rounded_btn_black"
-                    android:stateListAnimator="@null"
-                    android:layout_marginLeft="150dp"
-                    android:layout_marginTop="20dp"
-                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <Button
+                        android:id="@+id/btnread"
+                        android:layout_width="120dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/rounded_btn_black"
+                        android:text="Read"
+                        android:textColor="@color/white" />
+
+                    <Button
+                        android:id="@+id/btndownload"
+                        android:layout_width="120dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginLeft="60dp"
+                        android:background="@drawable/rounded_btn_black"
+                        android:text="Download"
+                        android:textColor="@color/white" />
+                </LinearLayout>
 
 
             </androidx.appcompat.widget.LinearLayoutCompat>
+
+
         </RelativeLayout>
     </ScrollView>
 

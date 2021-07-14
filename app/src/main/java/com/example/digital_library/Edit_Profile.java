@@ -1,6 +1,7 @@
 package com.example.digital_library;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -8,7 +9,10 @@ import androidx.fragment.app.Fragment;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.icu.util.Calendar;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -21,15 +25,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.example.digital_library.util.MyApplication;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
+import static com.example.digital_library.util.Utils.getByte;
+import static com.example.digital_library.util.Utils.getImage;
 
 public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     private TextView emailText;//ic text
@@ -42,19 +46,28 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
     private EditText phoneEdit;//phone edit filed
     private Button cancelBtn;//cance button
     private Button saveBtn;//save button
+    private Button uploadBtn;//
+    private Button updateBtn;
     private int lastfragment;
+    private byte[] photoImage;
+    private ImageView photo;
+    private User currentUser;
+    public static final int SELECT_PHOTO=7777;
 
     String[] gender={"Male","Female","Preferred not to say"};
     String selectedGender="";
 
-    private User currentUser;
-    //private DatabaseHelper DB;
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         lastfragment=0;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
+
 
         //get intent for current user
         currentUser = (User) getIntent().getSerializableExtra("user");
@@ -78,6 +91,9 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
         phoneEdit = findViewById(R.id.et_phoneno);
         cancelBtn = findViewById(R.id.btncancel);
         saveBtn = findViewById(R.id.btnsave);
+        uploadBtn = findViewById(R.id.btnupload);
+        updateBtn = findViewById(R.id.btnupdate);
+        photo= findViewById(R.id.photo);
 
         //get intent for current user
         currentUser = (User) getIntent().getSerializableExtra("user");
@@ -87,18 +103,27 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
         lastnameEdit.setText(currentUser.getLastname());
         phoneEdit.setText(currentUser.getPhoneNo());
         dateBtn.setText(currentUser.getBdate());
+        currentUser.setBdate(currentUser.getBdate());
+
+
+
+
 
         //initiate database access and open database
         DatabaseAccess DB = DatabaseAccess.getInstance(this);
         DB.open();
 
+        photoImage= DB.getPic(currentUser.getEmail());
+        if(photoImage!=null){
+            photo.setImageBitmap(getImage(photoImage));
+        }
 
-        //school list spinner-school list from database
+
         ArrayAdapter genderaa = new ArrayAdapter(this,android.R.layout.simple_list_item_1,gender);
         genderaa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         gender_spin.setAdapter(genderaa);
 
-        //get string of selected year from year spinner when clicked
+
         gender_spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -107,9 +132,42 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+                selectedGender=currentUser.getGender();
 
             }
         });
+
+        uploadBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+               startActivityForResult(intent,SELECT_PHOTO);
+            }
+        });
+
+        updateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //convert source of image view to bitmap
+                Bitmap bitmap=((BitmapDrawable)photo.getDrawable()).getBitmap();
+                boolean update;
+
+               update=DB.addPhoto(currentUser.getEmail(),getByte(bitmap));
+                if (update) {
+                    Toast.makeText(Edit_Profile.this,"Updated. Saved.",Toast.LENGTH_SHORT).show();
+
+
+                } else {
+                    Toast.makeText(Edit_Profile.this,"Save failed",Toast.LENGTH_SHORT).show();
+                }
+
+
+
+            }
+        });
+
+
 
         //click date and show calendar
         dateBtn.setOnClickListener(new View.OnClickListener() {
@@ -170,8 +228,21 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
 
             }
         });
-    }
 
+
+    };
+
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==SELECT_PHOTO && resultCode==RESULT_OK && data !=null){
+            Uri pickedImage=data.getData();
+            photo.setImageURI(pickedImage);
+
+        }
+    }
 
     @Override
     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
@@ -196,9 +267,7 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
         return super.dispatchTouchEvent(me);
     }
 
-    /**
-     * Hide the keyboard based on the location of the EditText relative to the location the user clicked on, because it cannot be hidden when the user clicked on EditText
-     */
+
     private boolean isShouldHideKeyboard(View v, MotionEvent event) {
         // Check if the resulting focus contains EditText
         if (v != null && (v instanceof EditText)) {
@@ -248,16 +317,16 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
                     bundle = new Bundle();
                     bundle.putSerializable("user",currentUser);//pass the value
                     selectedFragment.setArguments(bundle);
-                    //lastfragment = R.id.nav_profile;
+                    lastfragment = R.id.nav_profile;
                     break;
-                case R.id.nav_search:
+                case R.id.nav_fav:
                     bundle = new Bundle();
                     bundle.putSerializable("user",currentUser);//pass the value
 
-                        selectedFragment = new SearchPage();
+                        selectedFragment = new FavouritePage();
 
                     selectedFragment.setArguments(bundle);
-                    lastfragment = R.id.nav_search;
+                    lastfragment = R.id.nav_fav;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
             return false;

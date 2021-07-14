@@ -24,7 +24,7 @@ import java.util.Objects;
 public class HomePage extends Fragment implements View.OnClickListener {
 
     private static final String TAG = HomePage.class.getSimpleName();
-    public CardView booklist, exam_check, personality_check,check_in;
+    public CardView booklist, reel, physical,audio;
     private User currentUser;
     VideoView videoView;
     private boolean mVolumePlaying = false;
@@ -43,10 +43,10 @@ public class HomePage extends Fragment implements View.OnClickListener {
         nameText.setText("Hello, " + currentUser.getFirstname());
 
         //reference to view by id
-        booklist = (CardView)v.findViewById(R.id.booklist);
-        exam_check = (CardView)v.findViewById(R.id.exam_check);
-        personality_check = (CardView)v.findViewById(R.id.personality_test);
-        check_in = (CardView)v.findViewById(R.id.check_in);
+        booklist = (CardView)v.findViewById(R.id.bookcollection);
+        reel = (CardView)v.findViewById(R.id.reel);
+        physical = (CardView)v.findViewById(R.id.physical);
+        audio = (CardView)v.findViewById(R.id.audio);
 
         volume = (AppCompatImageView) v.findViewById(R.id.volume_std);
 
@@ -69,9 +69,9 @@ public class HomePage extends Fragment implements View.OnClickListener {
 
         //on click listener on card view
         booklist.setOnClickListener(this);
-        exam_check.setOnClickListener(this);
-        personality_check.setOnClickListener(this);
-        check_in.setOnClickListener(this);
+        reel.setOnClickListener(this);
+        physical.setOnClickListener(this);
+        audio.setOnClickListener(this);
 
 
 
@@ -111,30 +111,28 @@ public class HomePage extends Fragment implements View.OnClickListener {
         Intent i;
 
         switch (v.getId()){
-            case R.id.booklist:
-                i= new Intent(getActivity(), BookList.class);
+            case R.id.bookcollection:
+                i= new Intent(getActivity(), BookGenre.class);
                 i.putExtra("user",currentUser);
                 startActivity(i);
                 break;
-//            case R.id.exam_check:
-//                i = new Intent(getActivity(), ExamResultForm.class);
-//                i.putExtra("user",currentUser);
-//                i.putExtra("ICNo", currentUser.getICNo());
-//                startActivity(i);
-//                break;
-//            case R.id.personality_test:
-//                i=new Intent(getActivity(), PersonalityTestHome.class);
-//                i.putExtra("user",currentUser);
-//                i.putExtra("ICNo", currentUser.getICNo());
-//                startActivity(i);
-//                break;
-//
-//            case R.id.check_in:
-//                i=new Intent(getActivity(), Check_in_scan.class);
-//                i.putExtra("user",currentUser);
-//                startActivity(i);
-//                break;
-//
+            case R.id.reel:
+                i = new Intent(getActivity(), Reels.class);
+                i.putExtra("user",currentUser);
+                startActivity(i);
+                break;
+            case R.id.physical:
+                i=new Intent(getActivity(), PhysicalReq.class);
+                i.putExtra("user",currentUser);
+                startActivity(i);
+                break;
+
+            case R.id.audio:
+                i=new Intent(getActivity(), AudioBook.class);
+                i.putExtra("user",currentUser);
+                startActivity(i);
+                break;
+
 
 
         }

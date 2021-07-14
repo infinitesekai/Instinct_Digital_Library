@@ -4,9 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -54,8 +51,8 @@ public class Introductory extends AppCompatActivity {
         });
         //init array lists and add fragment
         fragments=new ArrayList<>();
-        fragments.add(new OnBoardingFragment1());
-        fragments.add(new OnBoardingFragment_2());
+        fragments.add(new IntroFrag1());
+        fragments.add(new IntroFrag2());
 
         //view page
         viewPager = findViewById(R.id.vp);
@@ -81,7 +78,7 @@ public class Introductory extends AppCompatActivity {
         });
 
         //jason animation translation
-        img_library.animate().translationY(2000).setDuration(3000).setStartDelay(4000);
+        img_library.animate().translationY(2100).setDuration(3000).setStartDelay(4000);
         img_name.animate().translationY(2000).setDuration(3000).setStartDelay(4000);
         openingAnimationView.animate().translationY(2000).setDuration(3000).setStartDelay(4000).setListener(new Animator.AnimatorListener() {
             @Override

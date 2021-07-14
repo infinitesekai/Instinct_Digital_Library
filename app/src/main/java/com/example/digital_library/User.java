@@ -14,11 +14,12 @@ public class User implements Serializable{
     private String gender;
     private String bDate;
     private String phoneNo;
+    private byte[] photo;
 
     public User() {
     }
 
-    public User(String userID, String email, String firstname,String lastname, String password, String gender, String bDate, String phoneNo) {
+    public User(String userID, String email, String firstname,String lastname, String password, String gender, String bDate, String phoneNo,byte[] photo) {
         this.userID = userID;
         this.email = email;
         this.firstname = firstname;
@@ -27,6 +28,7 @@ public class User implements Serializable{
         this.gender = gender;
         this.bDate = bDate;
         this.phoneNo = phoneNo;
+        this.photo=photo;
     }
     public String getuserID() {
         return userID ;
@@ -102,5 +104,11 @@ public class User implements Serializable{
         this.phoneNo = phoneNo;
     }
 
+    public byte[] getPhoto() {
+        return photo;
+    }
 
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
+    }
 }
