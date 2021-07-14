@@ -8,6 +8,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.MediaParser;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
@@ -27,7 +28,7 @@ public class AudioBook extends AppCompatActivity {
     TextView playerposition,playerduration;
     SeekBar seekBar;
     ImageView btnrew,btnplay,btnpause,btnff;
-    Button notebtn;
+    Button notebtn,shufflebtn,morebtn;
     private User currentUser;//current user
     private int lastfragment;
     MediaPlayer mediaPlayer;
@@ -56,26 +57,26 @@ public class AudioBook extends AppCompatActivity {
         notebtn=findViewById(R.id.note);
         audiotitle=findViewById(R.id.audio_title);
 
+        shufflebtn=findViewById(R.id.shuffleau);
+        morebtn=findViewById(R.id.moreau);
+
         mediaPlayer=new MediaPlayer();
 
-        int shufflenum=getRandom(1,4);
+        int shufflenum=getRandom(1,7);
 
         mediaPlayer=shuffleaudio(shufflenum);
-
-        //iniatalize media player
-//        mediaPlayer=MediaPlayer.create(this,R.raw.forgetme);
 
 
         notebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String text="Note down this reel. Here's " + audiotitle.getText().toString() +". Learn more here: ";
+                String text="Note down this audible. Here's " + audiotitle.getText().toString() +". Learn more here: "+ switchlink(shufflenum);
                 Intent i=new Intent();
                 i.setAction(i.ACTION_SEND);
                 i.setType("text/plain");
                 i.putExtra(i.EXTRA_TEXT,text);
-                startActivity(Intent.createChooser(i,"Note down this reel!"));
+                startActivity(Intent.createChooser(i,"Note down this audible!"));
 
             }
 
@@ -218,6 +219,31 @@ public class AudioBook extends AppCompatActivity {
             }
         });
 
+        shufflebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearMP(mediaPlayer);
+                Intent i= new Intent(AudioBook.this, AudioBook.class);
+                i.putExtra("user",currentUser);
+                startActivity(i);
+            }
+        });
+
+        morebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String link=switchlink(shufflenum);
+                Intent i=new Intent();
+                i.setAction(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(link));
+                startActivity(Intent.createChooser(i,"Learn more."));
+
+            }
+
+        });
+
+
+
 
 
 
@@ -247,10 +273,54 @@ public class AudioBook extends AppCompatActivity {
                 audiotitle.setText("To Kill a Mockingbird");
                 mp = MediaPlayer.create(this,R.raw.bird);
                 break;
+            case 5:
+                audiotitle.setText("100 Love Sonnet:XVII");
+                mp = MediaPlayer.create(this,R.raw.lovesonnet);
+                break;
+            case 6:
+                audiotitle.setText("When You Are Old");
+                mp = MediaPlayer.create(this,R.raw.old);
+                break;
+            case 7:
+                audiotitle.setText("When We Two Parted");
+                mp = MediaPlayer.create(this,R.raw.parted);
+                break;
         }
 
         return mp;
     }
+
+    private String switchlink(int shufflenum){
+        String link="";
+        switch(shufflenum){
+            case 1:
+                link = "https://poemanalysis.com/pablo-neruda/if-you-forget-me/";
+                break;
+            case 2:
+                link = "https://interestingliterature.com/2020/06/shakespeare-romeo-juliet-summary-analysis/";
+                break;
+            case 3:
+                link = "https://www.litcharts.com/poetry/lord-byron/prometheus";
+                break;
+            case 4:
+                link = "https://www.sparknotes.com/lit/mocking/plot-analysis/";
+                break;
+            case 5:
+                link = "https://poemanalysis.com/pablo-neruda/one-hundred-love-sonnets-xvii/";
+                break;
+            case 6:
+                link = "https://www.litcharts.com/poetry/william-butler-yeats/when-you-are-old";
+                break;
+            case 7:
+                link = "https://www.litcharts.com/poetry/lord-byron/when-we-two-parted";
+                break;
+
+
+        }
+
+        return link;
+    }
+
 
     @SuppressLint("DefaultLocale")
     private String convertFormat(int duration){

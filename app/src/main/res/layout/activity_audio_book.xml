@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BookDesc"
+    tools:context=".AudioBook"
     android:background="@drawable/bg_gradient">
 
     <FrameLayout
@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Audio Book"
+            android:text="Audible"
             android:fontFamily="@font/robotobold"
             android:textSize="30dp"
             android:textColor="@color/white"
@@ -148,11 +148,39 @@
 
             </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="380dp">
+
+            <Button
+                android:id="@+id/moreau"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="45dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/rounded_btn_black"
+                android:text="Learn More"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/shuffleau"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="60dp"
+                android:background="@drawable/rounded_btn_black"
+                android:text="Shuffle"
+                android:textColor="@color/white" />
+        </LinearLayout>
 
 
 
 
-</RelativeLayout>
+
+
+    </RelativeLayout>
 
 
 
