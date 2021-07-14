@@ -44,7 +44,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Sign_Up" />
+        <activity android:name=".SignUp" />
         <activity android:name=".Login_page" />
     </application>
 

@@ -14,13 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.digital_library.DatabaseAccess;
-import com.example.digital_library.Login_page;
-import com.example.digital_library.User;
-
-import java.util.ArrayList;
-
-public class Sign_Up extends AppCompatActivity {
+public class SignUp extends AppCompatActivity {
     private EditText useremail,password,repassword,firstname,lastname;//input text
     private Button signup,signin;//signup button,signin button
 
@@ -61,7 +55,7 @@ public class Sign_Up extends AppCompatActivity {
                 if (pass.isEmpty()) return;
                 if (repass.isEmpty()) return;
                 if (email.equals("")||pass.equals("")||repass.equals("")) {
-                    Toast.makeText(Sign_Up.this,"Please enter all the fields",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUp.this,"Please enter all the fields",Toast.LENGTH_SHORT).show();
                 } else{
                     if(pass.equals(repass)){
 
@@ -71,22 +65,22 @@ public class Sign_Up extends AppCompatActivity {
                             //insert data into user table
                             Boolean insert = DB.insertUser(email,pass, firstnameStr, lastnameStr);
                             if(insert){
-                                if(ContextCompat.checkSelfPermission(Sign_Up.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
-                                    ActivityCompat.requestPermissions(Sign_Up.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},123);
+                                if(ContextCompat.checkSelfPermission(SignUp.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+                                    ActivityCompat.requestPermissions(SignUp.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},123);
                                 }
-                                Toast.makeText(Sign_Up.this,"Registered successfully",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignUp.this,"Registered successfully",Toast.LENGTH_SHORT).show();
                                 Intent intent =new Intent(getApplicationContext(), Login_page.class);
                                 startActivity(intent);
                             }else{
-                                Toast.makeText(Sign_Up.this, "Registration failed ", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignUp.this, "Registration failed ", Toast.LENGTH_SHORT).show();
                             }
 
                         } else{
-                            Toast.makeText(Sign_Up.this, "User already exist. Please enter again.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUp.this, "User already exist. Please enter again.", Toast.LENGTH_SHORT).show();
                         }
 
                     } else {
-                        Toast.makeText(Sign_Up.this,"Password does not match. Please enter again.",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignUp.this,"Password does not match. Please enter again.",Toast.LENGTH_SHORT).show();
                     }
                 }
             }

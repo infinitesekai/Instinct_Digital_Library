@@ -4,9 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -54,8 +51,8 @@ public class Introductory extends AppCompatActivity {
         });
         //init array lists and add fragment
         fragments=new ArrayList<>();
-        fragments.add(new OnBoardingFragment1());
-        fragments.add(new OnBoardingFragment_2());
+        fragments.add(new IntroFrag1());
+        fragments.add(new IntroFrag2());
 
         //view page
         viewPager = findViewById(R.id.vp);

@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class OnBoardingFragment1 extends Fragment {
+public class IntroFrag1 extends Fragment {
 
     @Nullable
     @Override
