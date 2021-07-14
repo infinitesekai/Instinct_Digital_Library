@@ -58,7 +58,7 @@ public class Reels extends AppCompatActivity {
         morebtn=findViewById(R.id.btnmore);
 
 
-        int shufflenum=getRandom(1,5);
+        int shufflenum=getRandom(1,10);
         String path=shufflereel(shufflenum);
 
 
@@ -93,7 +93,7 @@ public class Reels extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String text="Note down this reel. Here's " + reeltitle.getText().toString() +". Learn more here:"+ switchlink(shufflenum);
+                String text="Note down this reel. Here's " + reeltitle.getText().toString() +". Learn more here: "+ switchlink(shufflenum);
                 Intent i=new Intent();
                 i.setAction(i.ACTION_SEND);
                 i.setType("text/plain");
@@ -146,6 +146,26 @@ public class Reels extends AppCompatActivity {
                 reeltitle.setText("Jane Eyre");
                 path = "android.resource://" + this.getPackageName() + "/" + R.raw.jane;
                 break;
+            case 6:
+                reeltitle.setText("The Little Prince");
+                path = "android.resource://" + this.getPackageName() + "/" + R.raw.lilprince;
+                break;
+            case 7:
+                reeltitle.setText("Metamorphosis");
+                path = "android.resource://" + this.getPackageName() + "/" + R.raw.morph;
+                break;
+            case 8:
+                reeltitle.setText("The Prince and the Pauper");
+                path = "android.resource://" + this.getPackageName() + "/" + R.raw.princepauper;
+                break;
+            case 9:
+                reeltitle.setText("Robinson Crusoe");
+                path = "android.resource://" + this.getPackageName() + "/" + R.raw.robinson;
+                break;
+            case 10:
+                reeltitle.setText("The Wizard of Oz");
+                path = "android.resource://" + this.getPackageName() + "/" + R.raw.wizardoz;
+                break;
 
         }
 
@@ -169,6 +189,21 @@ public class Reels extends AppCompatActivity {
                 break;
             case 5:
                 link = "https://www.britannica.com/topic/Jane-Eyre-novel-by-Bronte";
+                break;
+            case 6:
+                link = "https://www.britannica.com/topic/The-Little-Prince";
+                break;
+            case 7:
+                link = "https://interestingliterature.com/2021/05/franz-kafka-the-metamorphosis-summary-analysis/";
+                break;
+            case 8:
+                link = "https://www.litcharts.com/lit/the-prince-and-the-pauper/summary";
+                break;
+            case 9:
+                link = "https://interestingliterature.com/2021/02/defoe-robinson-crusoe-summary-analysis/";
+                break;
+            case 10:
+                link = "https://www.sparknotes.com/lit/wonderful-wizard-of-oz/summary/";
                 break;
 
         }

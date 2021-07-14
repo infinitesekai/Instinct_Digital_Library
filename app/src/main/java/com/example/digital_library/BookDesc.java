@@ -152,7 +152,7 @@ public class BookDesc extends AppCompatActivity {
             public void onClick(View v) {
 
                 String text="Hey, I find this book interesting. Here's " + bookTitle +" by " + book_record.getAuthor() + ". About the book: "
-                        + book_record.getSynopsis() +" Read together: " + databaseAccess.getLink(bookTitle) ;
+                        + book_record.getSynopsis() +" Let's read together: " + databaseAccess.getLink(bookTitle) ;
                 Intent i=new Intent();
                 i.setAction(i.ACTION_SEND);
                 i.setType("text/plain");
