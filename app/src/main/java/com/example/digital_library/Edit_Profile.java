@@ -51,12 +51,13 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
     private int lastfragment;
     private byte[] photoImage;
     private ImageView photo;
-
-    String[] gender={"Male","Female","Preferred not to say"};
-    String selectedGender="";
-
     private User currentUser;
     public static final int SELECT_PHOTO=7777;
+
+    String[] gender={"Male","Female","Preferred not to say"};
+    String selectedGender=currentUser.getGender();
+
+
 
 
     @Override
@@ -101,6 +102,7 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
         lastnameEdit.setText(currentUser.getLastname());
         phoneEdit.setText(currentUser.getPhoneNo());
         dateBtn.setText(currentUser.getBdate());
+        currentUser.setBdate(currentUser.getBdate());
 
 
 
@@ -128,7 +130,7 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                selectedGender=currentUser.getGender();
+
 
             }
         });

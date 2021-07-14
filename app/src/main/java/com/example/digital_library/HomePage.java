@@ -24,7 +24,7 @@ import java.util.Objects;
 public class HomePage extends Fragment implements View.OnClickListener {
 
     private static final String TAG = HomePage.class.getSimpleName();
-    public CardView booklist, reel, physical,check_in;
+    public CardView booklist, reel, physical,audio;
     private User currentUser;
     VideoView videoView;
     private boolean mVolumePlaying = false;
@@ -46,7 +46,7 @@ public class HomePage extends Fragment implements View.OnClickListener {
         booklist = (CardView)v.findViewById(R.id.bookcollection);
         reel = (CardView)v.findViewById(R.id.reel);
         physical = (CardView)v.findViewById(R.id.physical);
-        check_in = (CardView)v.findViewById(R.id.check_in);
+        audio = (CardView)v.findViewById(R.id.audio);
 
         volume = (AppCompatImageView) v.findViewById(R.id.volume_std);
 
@@ -71,7 +71,7 @@ public class HomePage extends Fragment implements View.OnClickListener {
         booklist.setOnClickListener(this);
         reel.setOnClickListener(this);
         physical.setOnClickListener(this);
-        check_in.setOnClickListener(this);
+        audio.setOnClickListener(this);
 
 
 
@@ -127,12 +127,12 @@ public class HomePage extends Fragment implements View.OnClickListener {
                 startActivity(i);
                 break;
 
-//            case R.id.check_in:
-//                i=new Intent(getActivity(), Check_in_scan.class);
-//                i.putExtra("user",currentUser);
-//                startActivity(i);
-//                break;
-//
+            case R.id.audio:
+                i=new Intent(getActivity(), AudioBook.class);
+                i.putExtra("user",currentUser);
+                startActivity(i);
+                break;
+
 
 
         }
