@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.Fragment;
 
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,6 +50,7 @@ public class Reels extends AppCompatActivity {
         shufflebtn=findViewById(R.id.shuffle);
 
 
+
         int shufflenum=getRandom(1,5);
         String path=shufflereel(shufflenum);
 
@@ -76,6 +80,8 @@ public class Reels extends AppCompatActivity {
 
             }
         });
+
+
 
     }
 

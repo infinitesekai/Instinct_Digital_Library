@@ -78,7 +78,7 @@ public class Introductory extends AppCompatActivity {
         });
 
         //jason animation translation
-        img_library.animate().translationY(2000).setDuration(3000).setStartDelay(4000);
+        img_library.animate().translationY(2100).setDuration(3000).setStartDelay(4000);
         img_name.animate().translationY(2000).setDuration(3000).setStartDelay(4000);
         openingAnimationView.animate().translationY(2000).setDuration(3000).setStartDelay(4000).setListener(new Animator.AnimatorListener() {
             @Override

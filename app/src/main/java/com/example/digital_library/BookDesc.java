@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,7 +26,7 @@ public class BookDesc extends AppCompatActivity {
     private TextView title,author,genre,synopsis,country,publisher;
     private byte[] coverImage;
     String bookTitle;
-    Button btnread,btndownload,btnfav;//download button
+    Button btnread,btndownload,btnfav,btnshare;//download button
     private User currentUser;//current user
     private int lastfragment;//indicate last fragment for navigation bar
     private ImageView cover;
@@ -56,6 +58,7 @@ public class BookDesc extends AppCompatActivity {
         btnread=findViewById(R.id.btnread);
         btndownload=findViewById(R.id.btndownload);
         btnfav=findViewById(R.id.favbutton);
+        btnshare=findViewById(R.id.sharebutton);
 
 
 
@@ -84,9 +87,26 @@ public class BookDesc extends AppCompatActivity {
 
 
 
+
+
+
         //call database access method to display qualification information
         //BookInfo class object to store book record
         BookInfo book_record=databaseAccess.DisplayBook(bookTitle);
+
+        btnshare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String text="Hey, I find this book interesting. Here's " + bookTitle +" by " + book_record.getAuthor() + ". About the book: "
+                        + book_record.getSynopsis();
+                Intent i=new Intent();
+                i.setAction(i.ACTION_SEND);
+                i.setType("text/plain");
+                i.putExtra(i.EXTRA_TEXT,text);
+                startActivity(Intent.createChooser(i,"Share this book!"));
+            }
+        });
 
         //book details information display
 
@@ -135,12 +155,12 @@ public class BookDesc extends AppCompatActivity {
                     Toast.makeText(BookDesc.this,"No resources.",Toast.LENGTH_SHORT).show();
                 }else{
 
-
                 Intent i= new Intent(BookDesc.this, BookDownload.class);
                 i.putExtra("user",currentUser);
                 i.putExtra("bookTitle",bookTitle);
 //                    i.putExtra("downloadlink",downloadlink);
-                startActivity(i);}
+                startActivity(i);
+                }
 
             }
         });

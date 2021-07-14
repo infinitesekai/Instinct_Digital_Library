@@ -43,11 +43,19 @@
                 android:foregroundGravity="bottom" />
 
             <Button
+                android:id="@+id/sharebutton"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginTop="45dp"
+                android:layout_marginLeft="270dp"
+                android:background="@drawable/ic_baseline_share_24"/>
+
+            <Button
                 android:id="@+id/favbutton"
                 android:layout_width="44dp"
                 android:layout_height="44dp"
                 android:layout_marginTop="45dp"
-                android:layout_marginLeft="320dp"
+                android:layout_marginLeft="330dp"
                 android:background="@drawable/ic_red_favorite_24"/>
 
 

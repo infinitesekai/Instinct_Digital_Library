@@ -34,6 +34,8 @@
                 android:background="@drawable/bg_round_rec"
                 android:foregroundGravity="bottom" />
 
+
+
 <RelativeLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
