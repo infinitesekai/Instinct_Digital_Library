@@ -319,14 +319,14 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_profile;
                     break;
-                case R.id.nav_search:
+                case R.id.nav_fav:
                     bundle = new Bundle();
                     bundle.putSerializable("user",currentUser);//pass the value
 
                         selectedFragment = new FavouritePage();
 
                     selectedFragment.setArguments(bundle);
-                    lastfragment = R.id.nav_search;
+                    lastfragment = R.id.nav_fav;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
             return false;

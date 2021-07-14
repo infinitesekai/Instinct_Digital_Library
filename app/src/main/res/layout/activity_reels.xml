@@ -33,7 +33,9 @@
                 android:layout_marginTop="108dp"
                 android:background="@drawable/bg_round_rec"
                 android:foregroundGravity="bottom" />
-
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
     <Button
         android:id="@+id/notebutton"
         android:layout_width="44dp"
@@ -41,6 +43,9 @@
         android:layout_marginTop="47dp"
         android:layout_marginLeft="320dp"
         android:background="@drawable/ic_baseline_note_add_24"/>
+    </FrameLayout>
+
+
 
 <RelativeLayout
     android:layout_width="wrap_content"
@@ -49,9 +54,13 @@
     android:layout_marginStart="15dp"
     >
 
+
+
             <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="50dp">
+
+
 
                 <TextView
                     android:id="@+id/reel_title"

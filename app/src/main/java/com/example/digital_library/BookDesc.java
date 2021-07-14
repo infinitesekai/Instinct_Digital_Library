@@ -195,12 +195,12 @@ public class BookDesc extends AppCompatActivity {
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_profile;
                     break;
-                case R.id.nav_search:
+                case R.id.nav_fav:
                     selectedFragment = new FavouritePage();
                     bundle = new Bundle();
                     bundle.putSerializable("user",currentUser);
                     selectedFragment.setArguments(bundle);
-                    lastfragment = R.id.nav_search;
+                    lastfragment = R.id.nav_fav;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
             return false;
