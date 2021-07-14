@@ -87,9 +87,6 @@ public class BookDesc extends AppCompatActivity {
 
 
 
-
-
-
         //call database access method to display qualification information
         //BookInfo class object to store book record
         BookInfo book_record=databaseAccess.DisplayBook(bookTitle);
@@ -99,9 +96,6 @@ public class BookDesc extends AppCompatActivity {
         //book details information display
 
         title.setText(bookTitle);
-//        coverImage= book_record.getCover();
-//        cover.setImageBitmap(getImage(coverImage));
-
         author.setText(book_record.getAuthor());
         genre.setText(book_record.getGenre());
         synopsis.setText(book_record.getSynopsis());
@@ -146,7 +140,6 @@ public class BookDesc extends AppCompatActivity {
                 Intent i= new Intent(BookDesc.this, BookDownload.class);
                 i.putExtra("user",currentUser);
                 i.putExtra("bookTitle",bookTitle);
-//                    i.putExtra("downloadlink",downloadlink);
                 startActivity(i);
                 }
 

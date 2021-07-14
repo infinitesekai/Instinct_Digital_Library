@@ -53,6 +53,10 @@ public class PhysicalReq extends AppCompatActivity implements DatePickerDialog.O
         currentUser = (User) getIntent().getSerializableExtra("user");//get intent for current user
         lastfragment = 0;
 
+
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
+
         nameEdit = findViewById(R.id.et_recname);
         addressEdit = findViewById(R.id.et_address);
         contactEdit = findViewById(R.id.et_contact);
