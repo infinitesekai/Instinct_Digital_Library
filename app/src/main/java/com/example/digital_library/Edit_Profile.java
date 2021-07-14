@@ -55,7 +55,8 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
     public static final int SELECT_PHOTO=7777;
 
     String[] gender={"Male","Female","Preferred not to say"};
-    String selectedGender=currentUser.getGender();
+    String selectedGender="";
+
 
 
 
@@ -107,6 +108,7 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
 
 
 
+
         //initiate database access and open database
         DatabaseAccess DB = DatabaseAccess.getInstance(this);
         DB.open();
@@ -130,7 +132,7 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                selectedGender=currentUser.getGender();
 
             }
         });
