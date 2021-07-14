@@ -3,13 +3,17 @@ package com.example.digital_library;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.core.app.ShareCompat;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -22,6 +26,8 @@ import android.widget.VideoView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.io.File;
+
 public class Reels extends AppCompatActivity {
     private static final String TAG = Reels.class.getSimpleName();
     private User currentUser;//current user
@@ -29,7 +35,7 @@ public class Reels extends AppCompatActivity {
     VideoView reel;
     private boolean mVolumePlaying = false;
     AppCompatImageView volume;
-    Button shufflebtn;
+    Button shufflebtn,notebtn;
     TextView reeltitle;
 
 
@@ -48,7 +54,7 @@ public class Reels extends AppCompatActivity {
         reeltitle= findViewById(R.id.reel_title);
         volume = findViewById(R.id.volume_std);
         shufflebtn=findViewById(R.id.shuffle);
-
+        notebtn=findViewById(R.id.notebutton);
 
 
         int shufflenum=getRandom(1,5);
@@ -82,6 +88,20 @@ public class Reels extends AppCompatActivity {
         });
 
 
+        notebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String text="Note down this reel. Here's " + reeltitle.getText().toString() ;
+                Intent i=new Intent();
+                i.setAction(i.ACTION_SEND);
+                i.setType("text/plain");
+                i.putExtra(i.EXTRA_TEXT,text);
+                startActivity(Intent.createChooser(i,"Note down this reel!"));
+
+            }
+
+        });
 
     }
 

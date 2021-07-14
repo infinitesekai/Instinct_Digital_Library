@@ -94,19 +94,7 @@ public class BookDesc extends AppCompatActivity {
         //BookInfo class object to store book record
         BookInfo book_record=databaseAccess.DisplayBook(bookTitle);
 
-        btnshare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                String text="Hey, I find this book interesting. Here's " + bookTitle +" by " + book_record.getAuthor() + ". About the book: "
-                        + book_record.getSynopsis();
-                Intent i=new Intent();
-                i.setAction(i.ACTION_SEND);
-                i.setType("text/plain");
-                i.putExtra(i.EXTRA_TEXT,text);
-                startActivity(Intent.createChooser(i,"Share this book!"));
-            }
-        });
 
         //book details information display
 
@@ -131,7 +119,7 @@ public class BookDesc extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String readlink=databaseAccess.getDownloadLink(bookTitle);
+                String readlink=databaseAccess.getLink(bookTitle);
                 if( readlink==""){
                     Toast.makeText(BookDesc.this,"No resources.",Toast.LENGTH_SHORT).show();
                 }else{
@@ -166,7 +154,19 @@ public class BookDesc extends AppCompatActivity {
         });
 
 
+        btnshare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                String text="Hey, I find this book interesting. Here's " + bookTitle +" by " + book_record.getAuthor() + ". About the book: "
+                        + book_record.getSynopsis() +" Read together: " + databaseAccess.getLink(bookTitle) ;
+                Intent i=new Intent();
+                i.setAction(i.ACTION_SEND);
+                i.setType("text/plain");
+                i.putExtra(i.EXTRA_TEXT,text);
+                startActivity(Intent.createChooser(i,"Share this book!"));
+            }
+        });
 
 
     }
