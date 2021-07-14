@@ -24,7 +24,7 @@ import java.util.Objects;
 public class HomePage extends Fragment implements View.OnClickListener {
 
     private static final String TAG = HomePage.class.getSimpleName();
-    public CardView booklist, reel, personality_check,check_in;
+    public CardView booklist, reel, physical,check_in;
     private User currentUser;
     VideoView videoView;
     private boolean mVolumePlaying = false;
@@ -45,7 +45,7 @@ public class HomePage extends Fragment implements View.OnClickListener {
         //reference to view by id
         booklist = (CardView)v.findViewById(R.id.bookcollection);
         reel = (CardView)v.findViewById(R.id.reel);
-        personality_check = (CardView)v.findViewById(R.id.personality_test);
+        physical = (CardView)v.findViewById(R.id.physical);
         check_in = (CardView)v.findViewById(R.id.check_in);
 
         volume = (AppCompatImageView) v.findViewById(R.id.volume_std);
@@ -70,7 +70,7 @@ public class HomePage extends Fragment implements View.OnClickListener {
         //on click listener on card view
         booklist.setOnClickListener(this);
         reel.setOnClickListener(this);
-        personality_check.setOnClickListener(this);
+        physical.setOnClickListener(this);
         check_in.setOnClickListener(this);
 
 
@@ -121,13 +121,12 @@ public class HomePage extends Fragment implements View.OnClickListener {
                 i.putExtra("user",currentUser);
                 startActivity(i);
                 break;
-//            case R.id.personality_test:
-//                i=new Intent(getActivity(), PersonalityTestHome.class);
-//                i.putExtra("user",currentUser);
-//                i.putExtra("ICNo", currentUser.getICNo());
-//                startActivity(i);
-//                break;
-//
+            case R.id.physical:
+                i=new Intent(getActivity(), PhysicalReq.class);
+                i.putExtra("user",currentUser);
+                startActivity(i);
+                break;
+
 //            case R.id.check_in:
 //                i=new Intent(getActivity(), Check_in_scan.class);
 //                i.putExtra("user",currentUser);

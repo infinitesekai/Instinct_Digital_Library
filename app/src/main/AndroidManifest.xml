@@ -26,7 +26,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Digital_Library">
-        <activity android:name=".Reels"></activity>
+        <activity android:name=".SubmitTransition"></activity>
+        <activity android:name=".PhysicalReq" />
+        <activity android:name=".Reels" />
         <activity
             android:name=".BookGenre"
             android:label="@string/title_activity_book_genre"

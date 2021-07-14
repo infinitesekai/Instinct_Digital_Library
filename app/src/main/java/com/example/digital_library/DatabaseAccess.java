@@ -264,6 +264,34 @@ public class DatabaseAccess<instance> {
         return list_item;
     }
 
+    public List<String> getAllBook() {
+        List<String> books = new ArrayList<String>();
+
+        Cursor cursor = database.rawQuery("SELECT title FROM Book",null);
+        if (cursor.moveToFirst()) {
+            do {
+                books.add(cursor.getString(0));
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return books;
+    }
+
+    public boolean insertPhyReq(String email,String name,String address,String contact,String title,String returndate,String remark) {
+
+        String insertphy = "insert into PhysicalReq(email,name,address,contact,title,returndate,remark) values ( '" + email + "','" + name + "','" +
+                address + "','" + contact + "','" + title + "','" + returndate + "','" + remark
+                + "');";
+
+        try {
+            database.execSQL(insertphy);
+        } catch (RuntimeException e) {
+            return false;
+        }
+        return true;
+    }
+
 
 
 

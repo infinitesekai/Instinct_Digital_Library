@@ -35,7 +35,7 @@ public class Reels extends AppCompatActivity {
     VideoView reel;
     private boolean mVolumePlaying = false;
     AppCompatImageView volume;
-    Button shufflebtn,notebtn;
+    Button shufflebtn,notebtn,morebtn;
     TextView reeltitle;
 
 
@@ -55,6 +55,7 @@ public class Reels extends AppCompatActivity {
         volume = findViewById(R.id.volume_std);
         shufflebtn=findViewById(R.id.shuffle);
         notebtn=findViewById(R.id.notebutton);
+        morebtn=findViewById(R.id.btnmore);
 
 
         int shufflenum=getRandom(1,5);
@@ -92,12 +93,25 @@ public class Reels extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String text="Note down this reel. Here's " + reeltitle.getText().toString() ;
+                String text="Note down this reel. Here's " + reeltitle.getText().toString() +". Learn more here:"+ switchlink(shufflenum);
                 Intent i=new Intent();
                 i.setAction(i.ACTION_SEND);
                 i.setType("text/plain");
                 i.putExtra(i.EXTRA_TEXT,text);
                 startActivity(Intent.createChooser(i,"Note down this reel!"));
+
+            }
+
+        });
+
+        morebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String link=switchlink(shufflenum);
+                Intent i=new Intent();
+                i.setAction(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(link));
+                startActivity(Intent.createChooser(i,"Learn more."));
 
             }
 
@@ -137,6 +151,31 @@ public class Reels extends AppCompatActivity {
 
         return path;
     }
+
+    private String switchlink(int shufflenum){
+        String link="";
+        switch(shufflenum){
+            case 1:
+                link = "https://www.shakespeare.org.uk/explore-shakespeare/shakespedia/shakespeares-plays/hamlet/";
+                break;
+            case 2:
+                link = "https://www.shakespeare.org.uk/explore-shakespeare/shakespedia/shakespeares-plays/midsummer-nights-dream/";
+                break;
+            case 3:
+                link = "https://www.litcharts.com/poetry/lord-byron/she-walks-in-beauty";
+                break;
+            case 4:
+                link = "https://www.penguinrandomhouse.com/books/326583/les-miserables-by-victor-hugo/9781598876994/readers-guide/";
+                break;
+            case 5:
+                link = "https://www.britannica.com/topic/Jane-Eyre-novel-by-Bronte";
+                break;
+
+        }
+
+        return link;
+    }
+
 
     private void PreparedListener(MediaPlayer mp){
         try {

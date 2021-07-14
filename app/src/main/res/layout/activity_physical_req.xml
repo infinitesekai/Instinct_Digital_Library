@@ -4,23 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".PhysicalReq"
     android:background="@drawable/bg_gradient">
 
+    <FrameLayout
 
-    <TextView
-        android:id="@+id/editprofile"
-        android:layout_width="171dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="161dp"
-        android:fontFamily="@font/robotobold"
-        android:text="Edit Profile"
-        android:textColor="@color/white"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="match_parent"
+        android:layout_height="180dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Physical Book Request"
+            android:fontFamily="@font/robotobold"
+            android:textSize="30dp"
+            android:textColor="@color/white"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="50dp"/>
+
+
+    </FrameLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -31,13 +34,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
             <View
                 android:id="@+id/bg_round_rec"
                 android:layout_width="match_parent"
-                android:layout_height="670dp"
+                android:layout_height="1000dp"
                 android:layout_marginTop="108dp"
-                android:layout_marginBottom="50dp"
                 android:background="@drawable/bg_round_rec"
                 android:foregroundGravity="bottom" />
 
@@ -46,131 +47,11 @@
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="116dp"
-                android:layout_marginBottom="50dp"
                 android:orientation="vertical">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
 
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/covercard"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="60dp"
-                        android:layout_marginEnd="60dp"
-                        android:layout_centerHorizontal="true"
-                        android:elevation="14dp"
-                        app:cardCornerRadius="8dp"
-                        app:cardPreventCornerOverlap="false"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <ImageView
-                            android:id="@+id/photo"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:adjustViewBounds="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/user_pic" />
-
-                    </androidx.cardview.widget.CardView>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="10dp">
-
-                    <Button
-                        android:id="@+id/btnupload"
-                        android:layout_width="120dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="50dp"
-                        android:layout_marginTop="4dp"
-                        android:background="@drawable/rounded_btn_black"
-                        android:text="upload"
-                        android:textColor="@color/white" />
-
-                    <Button
-                        android:id="@+id/btnupdate"
-                        android:layout_width="120dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginLeft="60dp"
-                        android:background="@drawable/rounded_btn_black"
-                        android:text="update"
-                        android:textColor="@color/white" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/profileeditcard"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-
-                            android:layout_marginStart="60dp"
-                            android:layout_marginEnd="60dp"
-                            android:elevation="14dp"
-                            app:cardCornerRadius="8dp"
-                            app:cardPreventCornerOverlap="false"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
-
-
-                        </androidx.cardview.widget.CardView>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="12dp"
-                        android:fontFamily="@font/robotobold"
-                        android:text="Email:"
-                        android:textColor="@color/black"
-                        android:textSize="16dp" />
-
-                    <TextView
-                        android:id="@+id/tv_email"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="53dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginRight="20dp"
-                        android:fontFamily="@font/robotoregular"
-                        android:text="emailView"
-                        android:textColor="@color/black"
-                        android:textSize="16dp" />
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -183,13 +64,13 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="5dp"
                         android:fontFamily="@font/robotobold"
-                        android:text="First Name:"
+                        android:text="Name:"
                         android:textColor="@color/black"
                         android:textSize="16dp" />
 
 
                     <EditText
-                        android:id="@+id/et_firstname"
+                        android:id="@+id/et_recname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
@@ -210,13 +91,13 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="5dp"
                         android:fontFamily="@font/robotobold"
-                        android:text="Last Name:"
+                        android:text="Address:"
                         android:textColor="@color/black"
                         android:textSize="16dp" />
 
 
                     <EditText
-                        android:id="@+id/et_lastname"
+                        android:id="@+id/et_address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
@@ -226,6 +107,32 @@
                         android:translationX="-3dp" />
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/robotobold"
+                        android:text="Contact No:"
+                        android:textColor="@color/black"
+                        android:textSize="16dp" />
+
+
+                    <EditText
+                        android:id="@+id/et_contact"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="20dp"
+                        android:lines="1"
+                        android:translationX="-3dp" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -238,23 +145,21 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="12dp"
                         android:fontFamily="@font/robotobold"
-                        android:text="Gender:"
+                        android:text="Book To Borrow:"
                         android:textColor="@color/black"
                         android:textSize="16dp" />
 
                     <Spinner
-                        android:id="@+id/gender_spinner"
+                        android:id="@+id/book_spinner"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="40dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_marginTop="12dp"
 
                         />
 
 
                 </LinearLayout>
-
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -267,13 +172,13 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="12dp"
                         android:fontFamily="@font/robotobold"
-                        android:text="Birth Date:"
+                        android:text="Expected Return Date:"
                         android:textColor="@color/black"
                         android:textSize="16dp" />
 
 
                     <Button
-                        android:id="@+id/et_bDate"
+                        android:id="@+id/et_returndate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingStart="20dp"
@@ -298,13 +203,13 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="5dp"
                         android:fontFamily="@font/robotobold"
-                        android:text="Phone No:"
+                        android:text="Remarks:"
                         android:textColor="@color/black"
                         android:textSize="16dp" />
 
 
                     <EditText
-                        android:id="@+id/et_phoneno"
+                        android:id="@+id/et_remark"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
@@ -318,10 +223,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="10dp">
+                    android:padding="10dp"
+                    android:layout_marginTop="30dp">
 
                     <Button
-                        android:id="@+id/btncancel"
+                        android:id="@+id/cancel"
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="50dp"
@@ -331,20 +237,24 @@
                         android:textColor="@color/white" />
 
                     <Button
-                        android:id="@+id/btnsave"
+                        android:id="@+id/submit"
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:layout_marginLeft="60dp"
                         android:background="@drawable/rounded_btn_black"
-                        android:text="save"
+                        android:text="Submit"
                         android:textColor="@color/white" />
                 </LinearLayout>
 
 
+
             </androidx.appcompat.widget.LinearLayoutCompat>
+
+
         </RelativeLayout>
     </ScrollView>
+
 
     <FrameLayout
         android:id="@+id/fragment_container"
@@ -352,6 +262,7 @@
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="5dp"
         tools:layout_editor_absoluteY="44dp" />
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -362,6 +273,8 @@
         app:menu="@menu/bottom_navigation">
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
 
 
 </RelativeLayout>

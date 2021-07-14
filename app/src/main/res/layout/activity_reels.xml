@@ -36,6 +36,7 @@
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
     <Button
         android:id="@+id/notebutton"
         android:layout_width="44dp"
@@ -106,16 +107,36 @@
                     android:background="@drawable/ic_baseline_volume_up_24"/>
 
             </androidx.cardview.widget.CardView>
-    <Button
-        android:id="@+id/shuffle"
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="380dp"
-        android:background="@drawable/rounded_btn_black"
-        android:text="Shuffle"
-        android:textColor="@color/white"
-        android:textSize="16sp"/>
+        android:orientation="horizontal"
+        android:layout_marginTop="380dp">
+
+        <Button
+            android:id="@+id/btnmore"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/rounded_btn_black"
+            android:text="Learn More"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/shuffle"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="60dp"
+            android:background="@drawable/rounded_btn_black"
+            android:text="Shuffle"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+
+
 
 </RelativeLayout>
 
