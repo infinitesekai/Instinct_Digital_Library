@@ -103,10 +103,6 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
         dateBtn.setText(currentUser.getBdate());
 
 
-//        photoImage= currentUser.getPhoto();
-//        if(photoImage!=null){
-//            photo.setImageBitmap(getImage(photoImage));
-//        }
 
 
         //initiate database access and open database
@@ -118,12 +114,12 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
             photo.setImageBitmap(getImage(photoImage));
         }
 
-        //school list spinner-school list from database
+
         ArrayAdapter genderaa = new ArrayAdapter(this,android.R.layout.simple_list_item_1,gender);
         genderaa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         gender_spin.setAdapter(genderaa);
 
-        //get string of selected year from year spinner when clicked
+
         gender_spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -132,6 +128,7 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+                selectedGender=currentUser.getGender();
 
             }
         });
@@ -151,6 +148,7 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
                 //convert source of image view to bitmap
                 Bitmap bitmap=((BitmapDrawable)photo.getDrawable()).getBitmap();
                 boolean update;
+
                update=DB.addPhoto(currentUser.getEmail(),getByte(bitmap));
                 if (update) {
                     Toast.makeText(Edit_Profile.this,"Updated. Saved.",Toast.LENGTH_SHORT).show();

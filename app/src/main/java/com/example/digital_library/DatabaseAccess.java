@@ -3,10 +3,12 @@ package com.example.digital_library;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.CursorWindow;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +42,7 @@ public class DatabaseAccess<instance> {
     //check user
     public User checkUser(String useremail) {
 
-        String queryUser = "Select email from User  where email = '" + useremail+ "'";
+        String queryUser = "SELECT  email FROM User  WHERE email = '" + useremail+ "'";
         Cursor cursor = database.rawQuery(queryUser, null);
         User user = new User();
         if (cursor.getCount() > 0) {
@@ -56,7 +58,7 @@ public class DatabaseAccess<instance> {
     //new user-insert into database
     public boolean insertUser(String email, String pass, String firstname, String lastname) {
 
-        String insert = "insert into User(email,password,firstname,lastname) values ( '" + email + "','" + pass + "','" + firstname + "','" + lastname + "');";
+        String insert = "INSERT INTO User(email,password,firstname,lastname) VALUES ( '" + email + "','" + pass + "','" + firstname + "','" + lastname + "');";
 
         try {
             database.execSQL(insert);
@@ -72,7 +74,7 @@ public class DatabaseAccess<instance> {
     //check ic and password
     public User verifyAcc(String useremail, String pwd) {
 
-        String queryUser = "Select email,firstname,lastname,gender,phoneNo,bdate from User  where email = '" + useremail+ "' and password = '" + pwd + "'";
+        String queryUser = "SELECT email,firstname,lastname,gender,phoneNo,bdate FROM User  WHERE email = '" + useremail+ "' and password = '" + pwd + "'";
         Cursor cursor = database.rawQuery(queryUser, null);
         User user = new User();
         if (cursor.getCount() > 0) {
@@ -99,9 +101,9 @@ public class DatabaseAccess<instance> {
     //update user profile information
     public boolean updateUser(User user) {
 
-        String update_user = "update User set Bdate ='" + user.getBdate() + "', firstname='" + user.getFirstname() +
+        String update_user = "UPDATE User SET Bdate ='" + user.getBdate() + "', firstname='" + user.getFirstname() +
                 "',lastname='" + user.getLastname() + "',gender='" + user.getGender() +
-                "',phoneNo='" + user.getPhoneNo() + "' where email = '" + user.getEmail() + "'";
+                "',phoneNo='" + user.getPhoneNo() + "' WHERE email = '" + user.getEmail() + "'";
         try {
             database.execSQL(update_user);
         } catch (RuntimeException e) {
@@ -158,6 +160,14 @@ public class DatabaseAccess<instance> {
         Cursor cursor = database.rawQuery("SELECT photo " +
                 "FROM User WHERE email = ?", new String[]{email});
 
+            try {
+                Field field = CursorWindow.class.getDeclaredField("sCursorWindowSize");
+                field.setAccessible(true);
+                field.set(null, 100 * 1024 * 1024); //new size 100MB
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         if(cursor.moveToFirst()){
             do{
                 result=cursor.getBlob(0);
@@ -209,7 +219,7 @@ public class DatabaseAccess<instance> {
 
     public boolean insertFav(String email, String title) {
 
-        String insertfav = "insert into Favourite(email,title) values ( '" + email + "','" + title + "');";
+        String insertfav = "INSERT INTO Favourite(email,title) VALUES ( '" + email + "','" + title + "');";
 
         try {
             database.execSQL(insertfav);
@@ -222,7 +232,7 @@ public class DatabaseAccess<instance> {
     public boolean checkFav(String useremail, String title) {
 
         boolean fav=false;
-        Cursor cursor = database.rawQuery("select email from Favourite where email=? and title=?", new String[]{useremail,title});
+        Cursor cursor = database.rawQuery("SELECT email FROM Favourite WHERE email=? AND title=?", new String[]{useremail,title});
         if (cursor.moveToFirst()) {
             fav=true;
         }
@@ -231,7 +241,7 @@ public class DatabaseAccess<instance> {
     }
 
     public boolean removeFav(String useremail,String title){
-        String remove = "delete from Favourite where email = '" + useremail + "'and title = '" + title + "'";
+        String remove = "DELETE FROM Favourite WHERE email = '" + useremail + "'AND title = '" + title + "'";
         Boolean result = true;
         try {
             database.execSQL(remove);
@@ -280,7 +290,7 @@ public class DatabaseAccess<instance> {
 
     public boolean insertPhyReq(String email,String name,String address,String contact,String title,String returndate,String remark) {
 
-        String insertphy = "insert into PhysicalReq(email,name,address,contact,title,returndate,remark) values ( '" + email + "','" + name + "','" +
+        String insertphy = "INSERT INTO PhysicalReq(email,name,address,contact,title,returndate,remark) VALUES ( '" + email + "','" + name + "','" +
                 address + "','" + contact + "','" + title + "','" + returndate + "','" + remark
                 + "');";
 
