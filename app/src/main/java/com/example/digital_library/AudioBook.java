@@ -274,7 +274,7 @@ public class AudioBook extends AppCompatActivity {
                 mp = MediaPlayer.create(this,R.raw.bird);
                 break;
             case 5:
-                audiotitle.setText("100 Love Sonnet:XVII");
+                audiotitle.setText("100 Love Sonnet: XVII");
                 mp = MediaPlayer.create(this,R.raw.lovesonnet);
                 break;
             case 6:

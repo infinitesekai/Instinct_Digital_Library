@@ -17,7 +17,7 @@ import androidx.fragment.app.Fragment;
 
 public class BookGenre extends AppCompatActivity implements View.OnClickListener {
 
-    CardView novel, nonfiction,detective,adventure,fantasy,poetry;
+    CardView fiction, nonfiction,detective,adventure,fantasy,poetry;
     private User currentUser;
     private int lastfragment;
 
@@ -37,7 +37,7 @@ public class BookGenre extends AppCompatActivity implements View.OnClickListener
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
 
-        novel = findViewById(R.id.novel);
+        fiction = findViewById(R.id.fic);
         nonfiction = findViewById(R.id.nonfic);
         detective = findViewById(R.id.detective);
         adventure = findViewById(R.id.adventure);
@@ -45,7 +45,7 @@ public class BookGenre extends AppCompatActivity implements View.OnClickListener
         poetry = findViewById(R.id.poetry);
 
 
-        novel.setOnClickListener(this);
+        fiction.setOnClickListener(this);
         nonfiction.setOnClickListener(this);
         detective.setOnClickListener(this);
         adventure.setOnClickListener(this);
@@ -96,7 +96,7 @@ public class BookGenre extends AppCompatActivity implements View.OnClickListener
         Intent i;
 
 
-        String novelgenre = "Novel";
+        String ficgenre = "Fiction";
         String nonficgenre = "Non-Fiction";
         String detectivegenre = "Detective";
         String fantasygenre = "Fantasy";
@@ -105,10 +105,10 @@ public class BookGenre extends AppCompatActivity implements View.OnClickListener
         switch (v.getId()) {
 
 
-            case R.id.novel:
+            case R.id.fic:
                 i = new Intent(this, BookList.class);
                 i.putExtra("user", currentUser);
-                i.putExtra("genre",novelgenre);
+                i.putExtra("genre",ficgenre);
                 startActivity(i);
                 break;
 

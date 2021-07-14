@@ -53,7 +53,7 @@
                     app:layout_constraintStart_toStartOf="parent">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/novel"
+                        android:id="@+id/fic"
                         android:layout_width="150dp"
                         android:layout_height="128dp"
                         android:layout_margin="20dp"
@@ -71,11 +71,11 @@
                             <ImageView
                                 android:id="@+id/image_view1"
                                 android:layout_width="44dp"
-                                android:layout_height="44dp"
+                                android:layout_height="54dp"
                                 android:layout_marginStart="90dp"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginEnd="12dp"
-                                android:src="@drawable/book_ic"
+                                android:src="@drawable/fic"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="1.0"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -88,7 +88,7 @@
                                 android:layout_marginStart="10dp"
                                 android:fontFamily="@font/robotobold"
                                 android:gravity="start"
-                                android:text="Novel"
+                                android:text="Fiction"
                                 android:textAllCaps="true"
                                 android:textColor="@color/white"
                                 android:textSize="16sp"
@@ -111,7 +111,7 @@
                         android:elevation="12dp"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
-                        app:cardBackgroundColor="@color/greyRed"
+                        app:cardBackgroundColor="@color/greyBlue"
                         app:cardCornerRadius="8dp">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -125,7 +125,7 @@
                                 android:layout_marginStart="90dp"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginEnd="12dp"
-                                android:src="@drawable/test_white"
+                                android:src="@drawable/nonfic"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="1.0"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -160,7 +160,7 @@
                         android:elevation="12dp"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
-                        app:cardBackgroundColor="@color/greyGreen"
+                        app:cardBackgroundColor="@color/greyRed"
                         app:cardCornerRadius="8dp">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -169,12 +169,12 @@
 
                             <ImageView
                                 android:id="@+id/image_view3"
-                                android:layout_width="40dp"
-                                android:layout_height="50dp"
+                                android:layout_width="46dp"
+                                android:layout_height="56dp"
                                 android:layout_marginStart="90dp"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginEnd="12dp"
-                                android:src="@drawable/file_signature_white"
+                                android:src="@drawable/detective"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="1.0"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -210,7 +210,7 @@
                         android:elevation="12dp"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
-                        app:cardBackgroundColor="@color/greyOrange"
+                        app:cardBackgroundColor="@color/greyRed"
                         app:cardCornerRadius="8dp">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -224,7 +224,7 @@
                                 android:layout_marginStart="90dp"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginEnd="12dp"
-                                android:src="@drawable/medal_white"
+                                android:src="@drawable/adventure"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="1.0"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -273,7 +273,7 @@
                                 android:layout_marginStart="90dp"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginEnd="12dp"
-                                android:src="@drawable/medal_white"
+                                android:src="@drawable/fantasy"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="1.0"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -309,7 +309,7 @@
                         android:elevation="12dp"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
-                        app:cardBackgroundColor="@color/greyYellow"
+                        app:cardBackgroundColor="@color/greyPurple"
                         app:cardCornerRadius="8dp">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -323,7 +323,7 @@
                                 android:layout_marginStart="90dp"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginEnd="12dp"
-                                android:src="@drawable/medal_white"
+                                android:src="@drawable/poetry"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="1.0"
                                 app:layout_constraintStart_toStartOf="parent"
