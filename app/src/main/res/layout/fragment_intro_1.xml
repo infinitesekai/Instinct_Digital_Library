@@ -33,9 +33,10 @@
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
         android:text="Glad You're Here!"
-        android:textColor="@color/black"
+        android:textColor="@color/DarkBlue"
         android:textSize="40sp"
         android:translationX="-13dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintBottom_toTopOf="@+id/tx_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.017"
@@ -58,7 +59,7 @@
         android:textColor="@color/black"
         android:textSize="22sp"
         android:translationX="-10dp"
-        app:layout_constraintBottom_toTopOf="@+id/img_baddp"
+        app:layout_constraintBottom_toTopOf="@+id/img_dots"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tx_welcome" />
@@ -73,14 +74,14 @@
         android:text="Instinct Library © 2021"
         android:textSize="20sp"
         android:translationY="-35dp"
-        app:layout_constraintBottom_toTopOf="@+id/img_baddp"
+        app:layout_constraintBottom_toTopOf="@+id/img_dots"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_book" />
 
     <ImageView
-        android:id="@+id/img_baddp"
+        android:id="@+id/img_dots"
         android:layout_width="80dp"
         android:layout_height="40dp"
         android:layout_marginStart="109dp"
