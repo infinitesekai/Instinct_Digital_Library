@@ -13,7 +13,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginBottom="156dp"
         android:gravity="center"
-        android:text="Instinct Corp. © 2021"
+        android:text="Instinct Library © 2021"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

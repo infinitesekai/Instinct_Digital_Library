@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +32,7 @@ public class BookList extends AppCompatActivity {
     public static ArrayList<String> list_item;
     ArrayAdapter adapter;
     TextView list_title;
+    Button shelfbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +48,9 @@ public class BookList extends AppCompatActivity {
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         list_title=findViewById(R.id.list_title);
+        shelfbutton=findViewById(R.id.shelfbutton);
 
-        list_title.setText("Collection of " + genre);
+        list_title.setText("Collections: " + genre);
 
 
         //initiate database access
@@ -92,6 +95,16 @@ public class BookList extends AppCompatActivity {
                 startActivity(i);
 
 
+            }
+        });
+
+        shelfbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i= new Intent(BookList.this, Bookshelf.class);
+                i.putExtra("user",currentUser);
+                i.putExtra("genre",genre);
+                startActivity(i);
             }
         });
 

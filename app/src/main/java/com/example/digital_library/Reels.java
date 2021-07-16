@@ -3,19 +3,12 @@ package com.example.digital_library;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
-import androidx.core.app.ShareCompat;
-import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
-import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,8 +18,6 @@ import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.io.File;
 
 public class Reels extends AppCompatActivity {
     private static final String TAG = Reels.class.getSimpleName();
