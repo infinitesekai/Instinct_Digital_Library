@@ -58,7 +58,7 @@ public class SubmitTransition extends AppCompatActivity {
                 case R.id.nav_home:
                     selectedFragment = new HomePage();
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    bundle.putSerializable("user",currentUser);
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_home;
                     break;
@@ -66,7 +66,7 @@ public class SubmitTransition extends AppCompatActivity {
                 case R.id.nav_profile:
                     selectedFragment = new Profile();
                     bundle = new Bundle();
-                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    bundle.putSerializable("user",currentUser);
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_profile;
                     break;

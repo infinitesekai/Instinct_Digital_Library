@@ -42,8 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.nav_fav:
 
                     bundle = new Bundle();
-                    bundle.putSerializable("user",currentUser);//pass the value
-
+                    bundle.putSerializable("user",currentUser);//pass the valu
                     selectedFragment = new FavouritePage();
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_fav;

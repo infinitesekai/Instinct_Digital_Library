@@ -23,7 +23,8 @@
     <View
         android:id="@+id/bg_round_rec"
         android:layout_width="match_parent"
-        android:layout_height="680dp"
+        android:layout_height="wrap_content"
+        android:minHeight="680dp"
         android:layout_marginTop="108dp"
         android:background="@drawable/bg_round_rec"
         android:foregroundGravity="bottom" />
@@ -41,19 +42,15 @@
         android:background="@drawable/ic_shelf"/>
     </FrameLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="120dp"
-        android:fillViewport="true">
 
         <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/book_list"/>
+            android:id="@+id/book_list"
+            android:scrollbars="vertical"
+            android:layout_marginTop="150dp"
+            android:layout_marginBottom="60dp"/>
 
-
-    </ScrollView>
 
     <FrameLayout
         android:id="@+id/fragment_container"

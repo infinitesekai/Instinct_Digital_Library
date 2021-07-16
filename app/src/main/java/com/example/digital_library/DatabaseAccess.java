@@ -266,7 +266,8 @@ public class DatabaseAccess<instance> {
         if (cursor.moveToFirst()) {
             do {
                 String book = cursor.getString(0);
-               FavouritePage.list_item.add(book);//add the book name into the list in BookList.java
+//               FavouritePage.list_item.add(book);
+                FavouritePage.favlist_item.add(book);
 
             } while (cursor.moveToNext());
         }
@@ -306,6 +307,19 @@ public class DatabaseAccess<instance> {
         ArrayList<byte[]> covers = new ArrayList<byte[]>();
         Cursor cursor = database.rawQuery("SELECT cover " +
                 "FROM Book WHERE genre = ?", new String[]{genre});
+
+        if(cursor.moveToFirst()){
+            do{
+                covers.add(cursor.getBlob(0));
+            }while (cursor.moveToNext());
+        }
+        return covers;
+    }
+
+    public  ArrayList<byte[]> getFavCover(String email){
+        ArrayList<byte[]> covers = new ArrayList<byte[]>();
+        Cursor cursor = database.rawQuery("SELECT cover " +
+                "FROM Favourite JOIN Book ON Favourite.title=Book.title WHERE email = ?", new String[]{email});
 
         if(cursor.moveToFirst()){
             do{

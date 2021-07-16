@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.media.MediaParser;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,8 +18,6 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import org.w3c.dom.Text;
 
 import java.util.concurrent.TimeUnit;
 
