@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:text="My Favourite"
             android:fontFamily="@font/robotobold"
-            android:textSize="30dp"
+            android:textSize="28dp"
             android:textColor="@color/white"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="50dp"/>
