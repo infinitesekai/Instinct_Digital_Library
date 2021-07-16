@@ -53,7 +53,7 @@
             android:id="@+id/book_grid"
             android:columnWidth="90dp"
             android:numColumns="3"
-            android:verticalSpacing="10dp"
+            android:verticalSpacing="30dp"
             android:horizontalSpacing="10dp"
             android:stretchMode="columnWidth"
             android:gravity="center"

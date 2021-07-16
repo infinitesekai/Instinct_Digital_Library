@@ -7,6 +7,8 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import androidx.annotation.DrawableRes;
+
 import java.util.ArrayList;
 
 import static com.example.digital_library.util.Utils.getImage;
@@ -45,7 +47,8 @@ public class ImageAdapter extends BaseAdapter {
             imageView = new ImageView(mContext);
             imageView.setLayoutParams(new GridView.LayoutParams(300, 450));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setPadding(10, 40, 10, 40);
+            imageView.setPadding(10, 10, 10, 10);
+
         }
         else
         {
