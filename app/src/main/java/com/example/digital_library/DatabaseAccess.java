@@ -302,6 +302,19 @@ public class DatabaseAccess<instance> {
         return true;
     }
 
+    public  ArrayList<byte[]> getAllCover(String genre){
+        ArrayList<byte[]> covers = new ArrayList<byte[]>();
+        Cursor cursor = database.rawQuery("SELECT cover " +
+                "FROM Book WHERE genre = ?", new String[]{genre});
+
+        if(cursor.moveToFirst()){
+            do{
+                covers.add(cursor.getBlob(0));
+            }while (cursor.moveToNext());
+        }
+        return covers;
+    }
+
 
 
 

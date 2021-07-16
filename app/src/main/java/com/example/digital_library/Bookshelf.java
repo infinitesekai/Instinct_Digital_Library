@@ -8,109 +8,97 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
+import android.widget.GridView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
-
-public class BookList extends AppCompatActivity {
+public class Bookshelf extends AppCompatActivity {
 
     private User currentUser;
     private int lastfragment;
 
     DatabaseAccess databaseAccess;
+    GridView book_grid;
 
-    //list view, list item and adapter to display list of application
-    ListView book_list;
-    public static ArrayList<String> list_item;
+    private ArrayList<byte[]> cover_item;
     ArrayAdapter adapter;
-    TextView list_title;
-    Button shelfbutton;
+    TextView grid_title;
+
+    Button listbutton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_book_list);
+        setContentView(R.layout.activity_bookshelf);
 
         currentUser = (User) getIntent().getSerializableExtra("user");
         lastfragment = 0;
         String genre=getIntent().getStringExtra("genre");
 
+
+
         //bottom navigation bar
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        list_title=findViewById(R.id.list_title);
-        shelfbutton=findViewById(R.id.shelfbutton);
+        grid_title=findViewById(R.id.bookgrid_title);
+        listbutton=findViewById(R.id.listbutton);
 
-        list_title.setText("Collections: " + genre);
+        grid_title.setText("Collections: " + genre);
+
+
+        //reference to list view by id
+        book_grid=findViewById(R.id.book_grid);
+
 
 
         //initiate database access
         databaseAccess= DatabaseAccess.getInstance(this);
         databaseAccess.open();
 
-        //reference to list view by id
-        book_list=findViewById(R.id.book_list);
+        BookList.list_item=new ArrayList<String>();
 
-        //array list to store list item
-        list_item=new ArrayList<String>();
-
-        //call database method to get application list
-        //child added into list_item
-        //list_item is the list of application for children
         databaseAccess.getBookList(genre);
 
-        if(list_item.isEmpty()){
-            Toast.makeText(BookList.this, "No Books.", Toast.LENGTH_SHORT).show();
+        cover_item=new ArrayList<byte[]>();
 
-        }
+        cover_item=databaseAccess.getAllCover(genre);
 
-        //array adapter for ListView display-insert item into ListView from list_item
-        adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list_item);
-
-        book_list.setAdapter(adapter);//conjoin array adapter with list view
-
-        //click on list item
-        book_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //get selected child name from list according to the position
-                String bookTitle=book_list.getItemAtPosition(position).toString();
+        book_grid.setAdapter(new ImageAdapter(this,cover_item));
 
 
-                Intent i;
+        book_grid.setOnItemClickListener(new OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent,
+                                    View v, int position, long id){
 
-                //start intent to navigate to respective page according to application status
-                i= new Intent(BookList.this, BookDesc.class);
+                Intent i = new Intent(Bookshelf.this, BookDesc.class);
                 i.putExtra("user",currentUser);
-                i.putExtra("bookTitle",bookTitle);
+                i.putExtra("bookTitle", BookList.list_item.get(position));
                 startActivity(i);
-
-
             }
         });
 
-        shelfbutton.setOnClickListener(new View.OnClickListener() {
+        listbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i= new Intent(BookList.this, Bookshelf.class);
+                Intent i= new Intent(Bookshelf.this, BookList.class);
                 i.putExtra("user",currentUser);
                 i.putExtra("genre",genre);
                 startActivity(i);
             }
         });
 
+
     }
-
-
 
     //function for bottom navigation bar
     //back to Home Page

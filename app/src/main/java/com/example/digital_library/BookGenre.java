@@ -106,42 +106,42 @@ public class BookGenre extends AppCompatActivity implements View.OnClickListener
 
 
             case R.id.fic:
-                i = new Intent(this, BookList.class);
+                i = new Intent(this, Bookshelf.class);
                 i.putExtra("user", currentUser);
                 i.putExtra("genre",ficgenre);
                 startActivity(i);
                 break;
 
             case R.id.nonfic:
-                i = new Intent(this, BookList.class);
+                i = new Intent(this, Bookshelf.class);
                 i.putExtra("user",currentUser);
                 i.putExtra("genre",nonficgenre);
                 startActivity(i);
                 break;
 
             case R.id.detective:
-                i = new Intent(this, BookList.class);
+                i = new Intent(this, Bookshelf.class);
                 i.putExtra("user", currentUser);
                 i.putExtra("genre",detectivegenre);
                 startActivity(i);
                 break;
 
             case R.id.adventure:
-                i = new Intent(this, BookList.class);
+                i = new Intent(this, Bookshelf.class);
                 i.putExtra("user",currentUser);
                 i.putExtra("genre",adventuregenre);
                 startActivity(i);
                 break;
 
             case R.id.fantasy:
-                i = new Intent(this, BookList.class);
+                i = new Intent(this, Bookshelf.class);
                 i.putExtra("user", currentUser);
                 i.putExtra("genre",fantasygenre);
                 startActivity(i);
                 break;
 
             case R.id.poetry:
-                i = new Intent(this, BookList.class);
+                i = new Intent(this, Bookshelf.class);
                 i.putExtra("user",currentUser);
                 i.putExtra("genre",poetrygenre);
                 startActivity(i);

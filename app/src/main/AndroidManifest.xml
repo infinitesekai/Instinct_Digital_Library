@@ -26,7 +26,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Digital_Library">
-        <activity android:name=".AudioBook"></activity>
+        <activity android:name=".Bookshelf"></activity>
+        <activity android:name=".AudioBook" />
         <activity android:name=".SubmitTransition" />
         <activity android:name=".PhysicalReq" />
         <activity android:name=".Reels" />

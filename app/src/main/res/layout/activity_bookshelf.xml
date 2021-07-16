@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BookList"
+    tools:context=".Bookshelf"
     android:background="@drawable/bg_gradient">
 
     <TextView
-        android:id="@+id/list_title"
+        android:id="@+id/bookgrid_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Book List"
+        android:text="Book Shelf"
         android:fontFamily="@font/robotobold"
         android:textSize="28dp"
         android:textColor="@color/white"
@@ -23,7 +23,7 @@
     <View
         android:id="@+id/bg_round_rec"
         android:layout_width="match_parent"
-        android:layout_height="680dp"
+        android:layout_height="1000dp"
         android:layout_marginTop="108dp"
         android:background="@drawable/bg_round_rec"
         android:foregroundGravity="bottom" />
@@ -33,12 +33,12 @@
         android:layout_height="wrap_content">
 
     <Button
-        android:id="@+id/shelfbutton"
+        android:id="@+id/listbutton"
         android:layout_width="44dp"
         android:layout_height="44dp"
         android:layout_marginTop="45dp"
         android:layout_marginLeft="340dp"
-        android:background="@drawable/ic_shelf"/>
+        android:background="@drawable/ic_list_text"/>
     </FrameLayout>
 
     <ScrollView
@@ -47,10 +47,17 @@
         android:layout_marginTop="120dp"
         android:fillViewport="true">
 
-        <ListView
+        <GridView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/book_list"/>
+            android:id="@+id/book_grid"
+            android:columnWidth="90dp"
+            android:numColumns="3"
+            android:verticalSpacing="10dp"
+            android:horizontalSpacing="10dp"
+            android:stretchMode="columnWidth"
+            android:gravity="center"
+            android:layout_marginTop="30dp"/>
 
 
     </ScrollView>
@@ -72,5 +79,6 @@
         app:menu="@menu/bottom_navigation">
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
+
 
 </RelativeLayout>
