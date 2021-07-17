@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 public class Bookshelf extends AppCompatActivity {
 
+    //declare variables
     private User currentUser;
     private int lastfragment;
 
@@ -40,6 +41,7 @@ public class Bookshelf extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bookshelf);
 
+        //get intent
         currentUser = (User) getIntent().getSerializableExtra("user");
         lastfragment = 0;
         String genre=getIntent().getStringExtra("genre");
@@ -50,9 +52,11 @@ public class Bookshelf extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
+        //find view
         grid_title=findViewById(R.id.bookgrid_title);
         listbutton=findViewById(R.id.listbutton);
 
+        //set title
         grid_title.setText("Collections: " + genre);
 
 
@@ -65,17 +69,22 @@ public class Bookshelf extends AppCompatActivity {
         databaseAccess= DatabaseAccess.getInstance(this);
         databaseAccess.open();
 
+        //get book list
         BookList.list_item=new ArrayList<String>();
 
         databaseAccess.getBookList(genre);
 
+
+        //get book cover
         cover_item=new ArrayList<byte[]>();
 
         cover_item=databaseAccess.getAllCover(genre);
 
+        //set image adapter
         book_grid.setAdapter(new ImageAdapter(this,cover_item));
 
-
+        //book grid-on item click
+        //explicit intent to BookDesc
         book_grid.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent,
                                     View v, int position, long id){
@@ -87,6 +96,7 @@ public class Bookshelf extends AppCompatActivity {
             }
         });
 
+        //explicit intent-change to list view
         listbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,7 +111,7 @@ public class Bookshelf extends AppCompatActivity {
     }
 
     //function for bottom navigation bar
-    //back to Home Page
+
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {

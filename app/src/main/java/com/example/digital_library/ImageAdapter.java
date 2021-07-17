@@ -13,9 +13,11 @@ import java.util.ArrayList;
 
 import static com.example.digital_library.util.Utils.getImage;
 
+
+//image adapter to dispaly book cover
 public class ImageAdapter extends BaseAdapter {
     private Context mContext;
-    private ArrayList<byte[]> cover_item;
+    private ArrayList<byte[]> cover_item;//array list for byte[] to store cover photo of books
 
 
 
@@ -39,10 +41,11 @@ public class ImageAdapter extends BaseAdapter {
         return 0;
     }
 
-    // create a new ImageView for each item referenced by the Adapter
+    // create a new ImageView for each item referenced by the adapter
     public View getView(int position, View convertView, ViewGroup parent) {
         ImageView imageView;
 
+        // image view
         if (convertView == null) {
             imageView = new ImageView(mContext);
             imageView.setLayoutParams(new GridView.LayoutParams(300, 450));
@@ -54,6 +57,9 @@ public class ImageAdapter extends BaseAdapter {
         {
             imageView = (ImageView) convertView;
         }
+
+        //set image bit map
+        //get image according to the book positioned
         imageView.setImageBitmap(getImage(cover_item.get(position)));
         return imageView;
     }

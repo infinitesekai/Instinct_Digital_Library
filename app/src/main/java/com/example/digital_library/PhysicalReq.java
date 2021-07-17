@@ -26,16 +26,17 @@ import java.util.List;
 
 public class PhysicalReq extends AppCompatActivity implements DatePickerDialog.OnDateSetListener  {
 
-    private User currentUser;//current user
-    private int lastfragment;//indicate last fragment for navigation bar
+    //declare variable
+    private User currentUser;
+    private int lastfragment;
 
-    private EditText nameEdit;//first name text
-    private EditText addressEdit;//last name text
+    private EditText nameEdit;
+    private EditText addressEdit;
     private EditText contactEdit;
     private EditText remarkEdit;
 
-    private DatePicker datePicker;//date picker from calendar
-    private Button dateBtn;//date button
+    private DatePicker datePicker;
+    private Button dateBtn;
 
 
     private Button cancelBtn;
@@ -50,13 +51,15 @@ public class PhysicalReq extends AppCompatActivity implements DatePickerDialog.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_physical_req);
 
-        currentUser = (User) getIntent().getSerializableExtra("user");//get intent for current user
+        //get intent
+        currentUser = (User) getIntent().getSerializableExtra("user");
         lastfragment = 0;
 
-
+    //bottom navigation
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
+        //find view
         nameEdit = findViewById(R.id.et_recname);
         addressEdit = findViewById(R.id.et_address);
         contactEdit = findViewById(R.id.et_contact);
@@ -73,12 +76,15 @@ public class PhysicalReq extends AppCompatActivity implements DatePickerDialog.O
         DatabaseAccess DB = DatabaseAccess.getInstance(this);
         DB.open();
 
+        //get all book list
         List<String> AllBook=DB.getAllBook();
 
+        //spinner to display all the book available
         ArrayAdapter bookaa = new ArrayAdapter(this,android.R.layout.simple_list_item_1,AllBook);
         bookaa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         book_spin.setAdapter(bookaa);
 
+        //get selected book from spinner
         book_spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -91,6 +97,8 @@ public class PhysicalReq extends AppCompatActivity implements DatePickerDialog.O
             }
         });
 
+        //date button
+        //display date picker
         dateBtn.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
@@ -108,7 +116,7 @@ public class PhysicalReq extends AppCompatActivity implements DatePickerDialog.O
             }
         });
 
-        //on click listener for cancel button
+        //ocancel button
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,7 +124,9 @@ public class PhysicalReq extends AppCompatActivity implements DatePickerDialog.O
             }
         });
 
-        //on click listener for submit button
+        //submit button
+        //insert book request information into database
+        //explicit intent to SubmitTransition for successful data insert
         submitBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -148,15 +158,19 @@ public class PhysicalReq extends AppCompatActivity implements DatePickerDialog.O
 
     }
 
+    //date set listener
+    //set date format
+    //set text for date button
     @Override
     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-        //Implement dateset listener
-        //Gets the month of the year set by the date dialog.
+
         returnDate = String.format("%d-%d-%d",i,i1+1,i2);
         dateBtn.setText(returnDate);
 
     }
 
+
+    //bottom navigation
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {

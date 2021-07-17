@@ -20,15 +20,16 @@ import android.widget.TextView;
 import static com.example.digital_library.util.Utils.getImage;
 
 public class Profile extends Fragment {
-    private Button editBtn,btnLogout;//edit child button,edit profile button,logout button
-    private User currentUser;//current user
+    //declare variables
+    private Button editBtn,btnLogout;
+    private User currentUser;
     private TextView emailText;
     private TextView firstnameText;
     private TextView lastnameText;
     private TextView genderText;
     private TextView phoneText;
     private TextView birthdateText ;
-    private DatabaseAccess DB;//database
+    private DatabaseAccess DB;
     private byte[] photoImage;
     private ImageView photo;
 
@@ -37,11 +38,16 @@ public class Profile extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         Bundle bundle = getArguments();
+
+        //current user
         currentUser = (User) bundle.getSerializable("user");
         //initiate database access and open database
         DB = DatabaseAccess.getInstance(getContext());
         DB.open();
+
+        //on create-init view and get profile photo
         initViews(view);
+
         photoImage= DB.getPic(currentUser.getEmail());
         if(photoImage!=null){
             photo.setImageBitmap(getImage(photoImage));
@@ -51,10 +57,11 @@ public class Profile extends Fragment {
 
     private void initViews(View view) {
 
-        //get intent for current user
+        //get bundle for current user
         Bundle bundle = getArguments();
         currentUser = (User) bundle.getSerializable("user");
 
+        //find view
         emailText = view.findViewById(R.id.tvemail);
         firstnameText = view.findViewById(R.id.tvFirstName);
         lastnameText = view.findViewById(R.id.tvLastName);
@@ -63,7 +70,9 @@ public class Profile extends Fragment {
         birthdateText = view.findViewById(R.id.tvbirthdate);
         btnLogout = view.findViewById(R.id.btn_logout);
         photo=view.findViewById(R.id.photo);
+        editBtn = view.findViewById(R.id.btneditprofile);
 
+        //set text
         emailText.setText(currentUser.getEmail());
         firstnameText.setText(currentUser.getFirstname());
         lastnameText.setText(currentUser.getLastname());
@@ -71,12 +80,14 @@ public class Profile extends Fragment {
         phoneText.setText(currentUser.getPhoneNo());
         birthdateText.setText(currentUser.getBdate());
 
+        //get user profile photo if exist
         photoImage= currentUser.getPhoto();
         if(photoImage!=null){
         photo.setImageBitmap(getImage(photoImage));
         }
 
-        //on click listener for logout button
+        //logout button
+        //explicit intent to login page
         btnLogout.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(),Login_page.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -84,9 +95,10 @@ public class Profile extends Fragment {
             getActivity().finish();
         });
 
-        editBtn = view.findViewById(R.id.btneditprofile);
+
 
         //on click listener for edit button
+        //explicit intent to Edit_Profile
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -18,15 +18,15 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import static com.example.digital_library.util.Utils.getImage;
 
 
-//academic qualification
+
 public class BookDesc extends AppCompatActivity {
-    //text view
+    //declare variables
     private TextView title,author,genre,synopsis,country,publisher;
     private byte[] coverImage;
     String bookTitle;
-    Button btnread,btndownload,btnfav,btnshare;//download button
-    private User currentUser;//current user
-    private int lastfragment;//indicate last fragment for navigation bar
+    Button btnread,btndownload,btnfav,btnshare;
+    private User currentUser;
+    private int lastfragment;
     private ImageView cover;
     private boolean check;
     DatabaseAccess databaseAccess;
@@ -34,8 +34,8 @@ public class BookDesc extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_desc);
-
-        currentUser = (User) getIntent().getSerializableExtra("user");//get intent for current user
+        //get intent
+        currentUser = (User) getIntent().getSerializableExtra("user");
         bookTitle=getIntent().getStringExtra("bookTitle");
         lastfragment = 0;
 
@@ -64,7 +64,9 @@ public class BookDesc extends AppCompatActivity {
         databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
 
+        //check favourite to display red or grey colour for love button
         boolean checkfav=databaseAccess.checkFav(currentUser.getEmail(),bookTitle);
+
         if(checkfav){
             btnfav.setBackgroundResource(R.drawable.ic_red_favorite_24);
             btnfav.setSelected(true);
@@ -105,8 +107,9 @@ public class BookDesc extends AppCompatActivity {
             cover.setImageBitmap(getImage(coverImage));
         }
 
-        //on click listener for download button
+        //on click listener for button
 
+        //explicit intent-webview to open pdf in BookRead
         btnread.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,6 +129,7 @@ public class BookDesc extends AppCompatActivity {
             }
         });
 
+        //explicit intent-webview for download in BookDownload
         btndownload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,6 +149,7 @@ public class BookDesc extends AppCompatActivity {
         });
 
 
+        //implicit intent-action send
         btnshare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -163,7 +168,6 @@ public class BookDesc extends AppCompatActivity {
     }
 
     //function for bottom navigation bar
-    //back to  Home Page
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -198,6 +202,9 @@ public class BookDesc extends AppCompatActivity {
         }
     };
 
+    //function for clicking on favourite button
+    //insert if not checked
+    //delete if checked
     private void favclick(String useremail,String bookTitle,Button btnfav,boolean thischeck){
         if(!thischeck){
 

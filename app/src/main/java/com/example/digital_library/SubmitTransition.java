@@ -13,7 +13,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class SubmitTransition extends AppCompatActivity {
 
-
+    //declare variables
     private User currentUser;
     private int lastfragment;
     private ImageButton close;
@@ -23,18 +23,20 @@ public class SubmitTransition extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submit_transition);
 
-
+        //get current user
         currentUser = (User) getIntent().getSerializableExtra("user");
         lastfragment = 0;
 
+        //bottom navigation
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
+        //find view
         close= findViewById(R.id.btnclose);
 
+        //close button
+        //navigate to homepage fragment
         close.setOnClickListener(new View.OnClickListener() {
-
-
             @Override
             public void onClick(View v) {
                 Fragment selectedFragment = null;
@@ -48,6 +50,7 @@ public class SubmitTransition extends AppCompatActivity {
 
     }
 
+    //bottom navigation
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {

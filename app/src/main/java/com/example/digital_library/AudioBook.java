@@ -1,4 +1,4 @@
-package com.example.digital_library;
+ package com.example.digital_library;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,11 +22,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.concurrent.TimeUnit;
 
 public class AudioBook extends AppCompatActivity {
+    //declare variales
     TextView playerposition,playerduration;
     SeekBar seekBar;
     ImageView btnrew,btnplay,btnpause,btnff;
     Button notebtn,shufflebtn,morebtn;
-    private User currentUser;//current user
+    private User currentUser;
     private int lastfragment;
     MediaPlayer mediaPlayer;
     Handler handler=new Handler();
@@ -41,9 +42,11 @@ public class AudioBook extends AppCompatActivity {
         currentUser = (User) getIntent().getSerializableExtra("user");//get intent for current user
         lastfragment = 0;
 
+        //bottom avigation
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
+        //find view
         playerposition=findViewById(R.id.playerposition);
         playerduration=findViewById(R.id.playerduration);
         seekBar=findViewById(R.id.seekbar);
@@ -57,13 +60,18 @@ public class AudioBook extends AppCompatActivity {
         shufflebtn=findViewById(R.id.shuffleau);
         morebtn=findViewById(R.id.moreau);
 
+        //new instance
         mediaPlayer=new MediaPlayer();
 
+        //generate random number for shuffle
         int shufflenum=getRandom(1,7);
 
+        //create media player with different path according to the random number shuffled
         mediaPlayer=shuffleaudio(shufflenum);
 
 
+        //note button
+        //implicit intent-action send
         notebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,6 +109,8 @@ public class AudioBook extends AppCompatActivity {
         //set duration on text view
         playerduration.setText(strduration);
 
+
+        //play button
         btnplay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,22 +128,24 @@ public class AudioBook extends AppCompatActivity {
             }
         });
 
+        //pause button
         btnpause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //hide pause button
                 btnpause.setVisibility(View.GONE);
-
+                //show play button
                 btnplay.setVisibility(View.VISIBLE);
-
+                //pause media player
                 mediaPlayer.pause();
-
                 //stop handler
                 handler.removeCallbacks(runnable);
 
             }
         });
 
+
+        //fast forward button
         btnff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -156,6 +168,8 @@ public class AudioBook extends AppCompatActivity {
             }
         });
 
+
+        //rewind button
         btnrew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -178,6 +192,7 @@ public class AudioBook extends AppCompatActivity {
             }
         });
 
+        //seek bar
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -203,9 +218,11 @@ public class AudioBook extends AppCompatActivity {
             }
         });
 
+        //on completion
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
+                //hide pause button
                 btnpause.setVisibility(View.GONE);
 
                 //show play button
@@ -216,16 +233,22 @@ public class AudioBook extends AppCompatActivity {
             }
         });
 
+        //shuffle button
         shufflebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clearMP(mediaPlayer);
+                clearMP(mediaPlayer);//clear media player
+
+                //intent to the same page-shuffle with random number
                 Intent i= new Intent(AudioBook.this, AudioBook.class);
                 i.putExtra("user",currentUser);
                 startActivity(i);
             }
         });
 
+
+        //more button
+        //implicit intent-action view to open a a link in web browser
         morebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -247,10 +270,13 @@ public class AudioBook extends AppCompatActivity {
 
     }
 
+    //function to generate random number
     private int getRandom(int min,int max) {
         return min + (int)(Math.random()*((max-min)+1));
     }
 
+    //shuffle-set text according to the title
+    //create media player with different file in raw folder according to shuffled number
     private MediaPlayer shuffleaudio(int shufflenum){
         MediaPlayer mp=MediaPlayer.create(this,R.raw.forgetme);;
         switch(shufflenum){
@@ -287,6 +313,7 @@ public class AudioBook extends AppCompatActivity {
         return mp;
     }
 
+    //switch link-shuffle number to get the link for different video
     private String switchlink(int shufflenum){
         String link="";
         switch(shufflenum){
@@ -319,6 +346,7 @@ public class AudioBook extends AppCompatActivity {
     }
 
 
+    //comvert the format of duration to min:sec
     @SuppressLint("DefaultLocale")
     private String convertFormat(int duration){
         return String.format("%02d:%02d",
@@ -335,6 +363,7 @@ public class AudioBook extends AppCompatActivity {
         }
     }
 
+    //bottom navigation-clear mediaplayer when clicked
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
