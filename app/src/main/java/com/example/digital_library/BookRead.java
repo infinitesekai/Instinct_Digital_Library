@@ -15,14 +15,16 @@ public class BookRead extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_read);
+        //get intent
         bookTitle=getIntent().getStringExtra("bookTitle");
 
-
+        //get pdf link in database
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
 
         pdflink=databaseAccess.getLink(bookTitle);
 
+        //webview
 
         webView= findViewById(R.id.bookWebView);
 

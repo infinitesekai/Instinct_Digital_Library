@@ -20,7 +20,11 @@ import com.airbnb.lottie.LottieAnimationView;
 import java.util.ArrayList;
 import java.util.List;
 
+
+//introductory page
 public class Introductory extends AppCompatActivity {
+    //implement using Lottie Animation
+    //declare variable
     ImageView img_name,img_library;
     LottieAnimationView openingAnimationView;
 
@@ -34,13 +38,14 @@ public class Introductory extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_introductory);
-        //reference to view by id
+        //find view
         img_name =findViewById(R.id.Img_Name);
         img_library =findViewById(R.id.Img_Library);
         openingAnimationView =findViewById(R.id.opening);
         btn_start = findViewById(R.id.btn_start);
 
-        //on click listener for export button
+        //start button
+        //explicit intent to login page
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,7 +54,8 @@ public class Introductory extends AppCompatActivity {
                 finish();
             }
         });
-        //init array lists and add fragment
+
+        //initiate array lists and add fragment
         fragments=new ArrayList<>();
         fragments.add(new IntroFrag1());
         fragments.add(new IntroFrag2());
@@ -58,6 +64,8 @@ public class Introductory extends AppCompatActivity {
         viewPager = findViewById(R.id.vp);
         pageAdapter = new ScreenSlidePageAdapter(this);
         viewPager.setAdapter(pageAdapter);
+
+        //log selected page on page changed
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -77,7 +85,7 @@ public class Introductory extends AppCompatActivity {
             }
         });
 
-        //jason animation translation
+        //json animation translation
         img_library.animate().translationY(2100).setDuration(3000).setStartDelay(4000);
         img_name.animate().translationY(2000).setDuration(3000).setStartDelay(4000);
         openingAnimationView.animate().translationY(2000).setDuration(3000).setStartDelay(4000).setListener(new Animator.AnimatorListener() {

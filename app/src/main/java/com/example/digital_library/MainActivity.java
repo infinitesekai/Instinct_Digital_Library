@@ -11,7 +11,7 @@ import android.widget.Button;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-    public Button btn_student_home, btn_parent_home;//student home button,parent home button
+
     private User currentUser;//current user
     private int lastfragment;
 
@@ -21,12 +21,13 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
+
+            //put user intent
             Fragment selectedFragment = null;
             switch (item.getItemId()) {
                 case R.id.nav_home:
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("user",currentUser);//pass the value
-
+                    bundle.putSerializable("user",currentUser);
                     selectedFragment = new HomePage();
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_home;
@@ -35,14 +36,14 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.nav_profile:
                     selectedFragment = (Profile)new Profile();
                     bundle = new Bundle();
-                    bundle.putSerializable("user",currentUser);//pass the value
+                    bundle.putSerializable("user",currentUser);
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_profile;
                     break;
                 case R.id.nav_fav:
 
                     bundle = new Bundle();
-                    bundle.putSerializable("user",currentUser);//pass the valu
+                    bundle.putSerializable("user",currentUser);
                     selectedFragment = new FavouritePage();
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_fav;

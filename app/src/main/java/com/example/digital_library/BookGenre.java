@@ -16,7 +16,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 public class BookGenre extends AppCompatActivity implements View.OnClickListener {
-
+    //declare variables
     CardView fiction, nonfiction,detective,adventure,fantasy,poetry;
     private User currentUser;
     private int lastfragment;
@@ -29,14 +29,14 @@ public class BookGenre extends AppCompatActivity implements View.OnClickListener
 
 
 
-        //get the value pass from the previous activity
+        //get intent
         currentUser = (User) getIntent().getSerializableExtra("user");
 
         lastfragment = 0;
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-
+        //find view
         fiction = findViewById(R.id.fic);
         nonfiction = findViewById(R.id.nonfic);
         detective = findViewById(R.id.detective);
@@ -44,7 +44,7 @@ public class BookGenre extends AppCompatActivity implements View.OnClickListener
         fantasy = findViewById(R.id.fantasy);
         poetry = findViewById(R.id.poetry);
 
-
+        //on click listener
         fiction.setOnClickListener(this);
         nonfiction.setOnClickListener(this);
         detective.setOnClickListener(this);
@@ -57,6 +57,7 @@ public class BookGenre extends AppCompatActivity implements View.OnClickListener
 
     }
 
+    //bottom navigation
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -91,6 +92,8 @@ public class BookGenre extends AppCompatActivity implements View.OnClickListener
         }
     };
 
+
+    //onclick-switch according to id
     @Override
     public void onClick(View v) {
         Intent i;

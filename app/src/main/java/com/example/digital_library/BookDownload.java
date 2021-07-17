@@ -22,16 +22,19 @@ public class BookDownload extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_read);
+
+        //get intent-book title
         bookTitle=getIntent().getStringExtra("bookTitle");
 
 
+        //get download link from database
        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
        databaseAccess.open();
 
         downloadlink=databaseAccess.getDownloadLink(bookTitle);
         downloadlink=downloadlink.replace("/edit?usp=sharing","/export?format=pdf");
 
-
+        //webview for download
         webView= findViewById(R.id.bookWebView);
 
         webView.getSettings().setJavaScriptEnabled(true);

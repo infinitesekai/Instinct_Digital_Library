@@ -20,9 +20,9 @@ import androidx.fragment.app.Fragment;
 
 import java.util.Objects;
 
-
+//homepage
 public class HomePage extends Fragment implements View.OnClickListener {
-
+    //declare variable
     private static final String TAG = HomePage.class.getSimpleName();
     public CardView booklist, reel, physical,audio;
     private User currentUser;
@@ -48,9 +48,10 @@ public class HomePage extends Fragment implements View.OnClickListener {
         physical = (CardView)v.findViewById(R.id.physical);
         audio = (CardView)v.findViewById(R.id.audio);
 
+        //volume
         volume = (AppCompatImageView) v.findViewById(R.id.volume_std);
 
-        //set the video announcement
+        //set the video view and video path
         videoView = (VideoView)v.findViewById(R.id.news_std);
         String videoPath =
                 "android.resource://" +
@@ -60,10 +61,12 @@ public class HomePage extends Fragment implements View.OnClickListener {
         Uri uri = Uri.parse(videoPath);
         videoView.setVideoURI(uri);
 
+        //set media controller to start the video
         MediaController mediaController = new MediaController(getActivity());
         videoView.setMediaController(mediaController);
         videoView.start();
 
+        //prepared listner
         videoView.setOnPreparedListener(this::PreparedListener);
 
 
@@ -79,6 +82,7 @@ public class HomePage extends Fragment implements View.OnClickListener {
         return v;
     }
 
+    //prepared lisntener on media player for volume and loop setting
     private void PreparedListener(MediaPlayer mp){
         try {
             mp.setVolume(0f, 0f);
@@ -105,7 +109,7 @@ public class HomePage extends Fragment implements View.OnClickListener {
     }
 
 
-    //start intent to navigate to respective page
+    //explicit intent to corresponding page
     @Override
     public void onClick(View v) {
         Intent i;

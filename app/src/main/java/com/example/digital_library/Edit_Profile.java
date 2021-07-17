@@ -36,6 +36,7 @@ import static com.example.digital_library.util.Utils.getByte;
 import static com.example.digital_library.util.Utils.getImage;
 
 public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+   //declare variables
     private TextView emailText;//ic text
     private EditText firstnameEdit;//first name text
     private EditText lastnameEdit;//last name text
@@ -43,10 +44,10 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
     private DatePicker datePicker;//date picker from calendar
     private Button dateBtn;//date button
 
-    private EditText phoneEdit;//phone edit filed
-    private Button cancelBtn;//cance button
-    private Button saveBtn;//save button
-    private Button uploadBtn;//
+    private EditText phoneEdit;
+    private Button cancelBtn;
+    private Button saveBtn;
+    private Button uploadBtn;
     private Button updateBtn;
     private int lastfragment;
     private byte[] photoImage;
@@ -68,8 +69,7 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
-
-        //get intent for current user
+        //get intent
         currentUser = (User) getIntent().getSerializableExtra("user");
 
         //navigation bar
@@ -81,7 +81,7 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
     //  init views
     private void initViews() {
 
-        //reference to view by id
+        //find view
         emailText = findViewById(R.id.tv_email);
         firstnameEdit = findViewById(R.id.et_firstname);
         lastnameEdit = findViewById(R.id.et_lastname);
@@ -95,9 +95,11 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
         updateBtn = findViewById(R.id.btnupdate);
         photo= findViewById(R.id.photo);
 
-        //get intent for current user
+        //get intent
         currentUser = (User) getIntent().getSerializableExtra("user");
 
+
+        //set text
         emailText.setText(currentUser.getEmail());
         firstnameEdit.setText(currentUser.getFirstname());
         lastnameEdit.setText(currentUser.getLastname());
@@ -113,17 +115,20 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
         DatabaseAccess DB = DatabaseAccess.getInstance(this);
         DB.open();
 
+        //display profile picture if exists
         photoImage= DB.getPic(currentUser.getEmail());
+
         if(photoImage!=null){
             photo.setImageBitmap(getImage(photoImage));
         }
 
 
+        //gender spinner-array adapter
         ArrayAdapter genderaa = new ArrayAdapter(this,android.R.layout.simple_list_item_1,gender);
         genderaa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         gender_spin.setAdapter(genderaa);
 
-
+        //gender spinner-selected gender
         gender_spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -137,6 +142,9 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
             }
         });
 
+
+        //upload button
+        // implicit intent-action pick to select photo
         uploadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,6 +154,8 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
             }
         });
 
+        //update button
+        //update database for profile photo uploaded
         updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -187,7 +197,7 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
             }
         });
 
-        //on click listener for cancel button
+        //cancel button-finish
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -195,7 +205,9 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
             }
         });
 
-        //on click listener for save button
+        //save button
+        //update database for user information
+        //then redirect to profile fragment
         saveBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -217,7 +229,7 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
                     selectedFragment = new Profile();
 
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("user",currentUser);//pass the value user
+                    bundle.putSerializable("user",currentUser);
                     selectedFragment.setArguments(bundle);
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
 
@@ -234,6 +246,7 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
 
 
 
+    //set image to the picked image
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -244,15 +257,16 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
         }
     }
 
+    //Implement dateset listener
+    //Get date from the date dialog
     @Override
     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-        //Implement dateset listener
-        //Gets the month of the year set by the date dialog.
         String bdate = String.format("%d-%d-%d",i,i1+1,i2);
         dateBtn.setText(bdate);
         currentUser.setBdate(bdate);
     }
 
+    //get action and check for hide keyboard
     @Override
     public boolean dispatchTouchEvent(MotionEvent me) {
         // get action when the user clicks
@@ -268,6 +282,7 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
     }
 
 
+    //check for hide keyboard
     private boolean isShouldHideKeyboard(View v, MotionEvent event) {
         // Check if the resulting focus contains EditText
         if (v != null && (v instanceof EditText)) {
@@ -292,8 +307,7 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
     }
 
 
-    //function for bottom navigation bar
-    //back to Student Home Page
+    //function for bottom navigation ba
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -304,27 +318,23 @@ public class Edit_Profile extends AppCompatActivity implements DatePickerDialog.
                 case R.id.nav_home:
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("user",currentUser);//pass the value
-
-                        selectedFragment = new HomePage();
-
+                    selectedFragment = new HomePage();
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_home;
                     break;
 
                 case R.id.nav_profile:
-
                     selectedFragment = new Profile();
                     bundle = new Bundle();
                     bundle.putSerializable("user",currentUser);//pass the value
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_profile;
                     break;
+
                 case R.id.nav_fav:
                     bundle = new Bundle();
                     bundle.putSerializable("user",currentUser);//pass the value
-
-                        selectedFragment = new FavouritePage();
-
+                    selectedFragment = new FavouritePage();
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_fav;
             }
