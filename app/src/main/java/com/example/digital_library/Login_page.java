@@ -43,10 +43,9 @@ public class Login_page extends AppCompatActivity {
                 String pass= password.getText().toString();
 
                 //check empty or not field all the fields
-                if (email.isEmpty()) return;
-                if (pass.isEmpty()) return;
+
                 if (email.equals("")||pass.equals(""))
-                    Toast.makeText(Login_page.this,"Please enter all the fields",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login_page.this,"Please enter all credentials",Toast.LENGTH_SHORT).show();
                 else{
                     //verify acc by email and password
                     User user =DB.verifyAcc(email,pass);
