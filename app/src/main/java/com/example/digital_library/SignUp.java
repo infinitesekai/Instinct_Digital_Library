@@ -51,11 +51,8 @@ public class SignUp extends AppCompatActivity {
                 String lastnameStr = lastname.getText().toString().toUpperCase();
 
                 //check if empty or not fill all fields
-                if (email.isEmpty()) return;
-                if (pass.isEmpty()) return;
-                if (repass.isEmpty()) return;
                 if (email.equals("")||pass.equals("")||repass.equals("")) {
-                    Toast.makeText(SignUp.this,"Please enter all the fields",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUp.this,"Please enter all credentials",Toast.LENGTH_SHORT).show();
                 } else{
                     if(pass.equals(repass)){
                         //check user with email
