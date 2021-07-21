@@ -7,7 +7,7 @@
     android:background="@drawable/background_turquoise">
 
     <TextView
-        android:id="@+id/tx_companyname"
+        android:id="@+id/tx_libname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -19,7 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tx_1" />
+        app:layout_constraintTop_toBottomOf="@+id/tx_2" />
 
     <TextView
         android:id="@+id/tx_welcome"
@@ -40,7 +40,7 @@
         app:layout_constraintTop_toBottomOf="@+id/img_book" />
 
     <TextView
-        android:id="@+id/tx_1"
+        android:id="@+id/tx_2"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="90dp"

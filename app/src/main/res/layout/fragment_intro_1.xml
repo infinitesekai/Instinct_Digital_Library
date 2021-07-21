@@ -65,7 +65,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tx_welcome" />
 
     <TextView
-        android:id="@+id/tx_companyname"
+        android:id="@+id/tx_libname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="212dp"
