@@ -90,7 +90,7 @@
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_marginEnd="50dp"
-                    android:src="@drawable/loginic" />
+                    android:src="@drawable/login" />
             </TableRow>
             <TableRow
                 android:layout_width="match_parent"
@@ -113,7 +113,7 @@
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_marginEnd="50dp"
-                    android:src="@drawable/loginpassword" />
+                    android:src="@drawable/password" />
             </TableRow>
         </TableLayout>
         <Button

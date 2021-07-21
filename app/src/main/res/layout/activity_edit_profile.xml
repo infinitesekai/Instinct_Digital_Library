@@ -8,7 +8,6 @@
 
 
     <TextView
-        android:id="@+id/editprofile"
         android:layout_width="171dp"
         android:layout_height="60dp"
         android:layout_marginStart="50dp"

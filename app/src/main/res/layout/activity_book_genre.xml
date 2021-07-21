@@ -36,7 +36,6 @@
 
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/newsCardArea"
                 android:layout_width="match_parent"
                 android:layout_height="670dp"
                 android:minHeight="581dp"
