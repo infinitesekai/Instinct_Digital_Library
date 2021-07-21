@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".BookDesc"
-    android:background="@drawable/bg_gradient">
+    android:background="@drawable/background_turquoise">
 
     <FrameLayout
 
@@ -39,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1000dp"
                 android:layout_marginTop="108dp"
-                android:background="@drawable/bg_round_rec"
+                android:background="@drawable/background_bluelayer"
                 android:foregroundGravity="bottom" />
 
             <Button
@@ -288,7 +288,7 @@
                         android:layout_height="40dp"
                         android:layout_marginLeft="50dp"
                         android:layout_marginTop="4dp"
-                        android:background="@drawable/rounded_btn_black"
+                        android:background="@drawable/button_background"
                         android:text="Read"
                         android:textColor="@color/white" />
 
@@ -298,7 +298,7 @@
                         android:layout_height="40dp"
                         android:layout_marginTop="4dp"
                         android:layout_marginLeft="60dp"
-                        android:background="@drawable/rounded_btn_black"
+                        android:background="@drawable/button_background"
                         android:text="Download"
                         android:textColor="@color/white" />
                 </LinearLayout>

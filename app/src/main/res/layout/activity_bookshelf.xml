@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Bookshelf"
-    android:background="@drawable/bg_gradient">
+    android:background="@drawable/background_turquoise">
 
     <TextView
         android:id="@+id/bookgrid_title"
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:minHeight="680dp"
         android:layout_marginTop="108dp"
-        android:background="@drawable/bg_round_rec"
+        android:background="@drawable/background_bluelayer"
         android:foregroundGravity="bottom" />
 
     <FrameLayout

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_gradient">
+    android:background="@drawable/background_turquoise">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="300dp"
                 android:layout_marginTop="50dp"
-                android:background="@drawable/rounded_btn_black"
+                android:background="@drawable/button_background"
                 android:text="logout"
                 android:textColor="@color/white"
                 android:translationY="-20dp" />
@@ -33,7 +33,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="108dp"
-                android:background="@drawable/bg_round_rec"
+                android:background="@drawable/background_bluelayer"
                 android:foregroundGravity="bottom" />
 
 
@@ -285,7 +285,7 @@
                     android:id="@+id/btneditprofile"
                     android:layout_width="230dp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_btn_black"
+                    android:background="@drawable/button_background"
                     android:text="edit profile"
                     android:layout_weight="1"
                     android:layout_marginLeft="55dp"
