@@ -11,9 +11,15 @@
     <color name="white">#FFFFFFFF</color>
     <color name="lightGrey">#F6F6F6</color>
     <color name="red">#CC0000</color>
+    <color name="blueGrey">#E3DCFF</color>
+    <color name="veryLightPink">#FCECD3</color>
+    <color name="greyOrange">#995a3f</color>
     <color name="greyRed">#B8685E</color>
     <color name="greyBlue">#26768F</color>
+    <color name="greyGreen">#2E8266</color>
     <color name="greyPurple">#71608E</color>
+    <color name="greyYellow">#988c31</color>
     <color name="transparent">#80000000</color>
+    <color name="darkPurple">#525CDD</color>
 
 </resources>
