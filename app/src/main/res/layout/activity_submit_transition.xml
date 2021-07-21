@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SubmitTransition"
-    android:background="@drawable/bg_gradient">
+    android:background="@drawable/background_turquoise">
 
     <FrameLayout
 
@@ -49,7 +49,7 @@
         <TextView
             android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:text="Instinct Library staff will respond within 3 working days. Please wait for you book delivery patiently."
+            android:text="Instinct Library staff will respond within 3 working days. Please wait for your book delivery patiently."
             android:textAlignment="center"
             android:textSize="20dp"
             android:fontFamily="@font/robotoregular"

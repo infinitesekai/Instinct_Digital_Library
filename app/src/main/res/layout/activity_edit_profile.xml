@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_gradient">
+    android:background="@drawable/background_turquoise">
 
 
     <TextView
-        android:id="@+id/editprofile"
         android:layout_width="171dp"
         android:layout_height="60dp"
         android:layout_marginStart="50dp"
@@ -38,7 +37,7 @@
                 android:layout_height="690dp"
                 android:layout_marginTop="108dp"
                 android:layout_marginBottom="50dp"
-                android:background="@drawable/bg_round_rec"
+                android:background="@drawable/background_layerblue"
                 android:foregroundGravity="bottom" />
 
 
@@ -95,7 +94,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="50dp"
                         android:layout_marginTop="4dp"
-                        android:background="@drawable/rounded_btn_black"
+                        android:background="@drawable/button_background"
                         android:text="upload"
                         android:textColor="@color/white" />
 
@@ -105,7 +104,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:layout_marginLeft="60dp"
-                        android:background="@drawable/rounded_btn_black"
+                        android:background="@drawable/button_background"
                         android:text="update"
                         android:textColor="@color/white" />
                 </LinearLayout>
@@ -326,7 +325,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="50dp"
                         android:layout_marginTop="4dp"
-                        android:background="@drawable/rounded_btn_black"
+                        android:background="@drawable/button_background"
                         android:text="cancel"
                         android:textColor="@color/white" />
 
@@ -336,7 +335,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:layout_marginLeft="60dp"
-                        android:background="@drawable/rounded_btn_black"
+                        android:background="@drawable/button_background"
                         android:text="save"
                         android:textColor="@color/white" />
                 </LinearLayout>

@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_gradient">
+    android:background="@drawable/background_turquoise">
 
     <TextView
-        android:id="@+id/tx_companyname"
+        android:id="@+id/tx_library"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tx_1" />
 
     <TextView
-        android:id="@+id/tx_welcome"
+        android:id="@+id/tx_read"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="90dp"
@@ -56,7 +56,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tx_welcome" />
+        app:layout_constraintTop_toBottomOf="@+id/tx_read" />
 
     <ImageView
         android:id="@+id/img_book"

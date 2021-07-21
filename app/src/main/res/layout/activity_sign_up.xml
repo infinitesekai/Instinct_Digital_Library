@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_gradient">
+    android:background="@drawable/background_turquoise">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -15,7 +15,6 @@
             android:layout_width="match_parent"
             android:layout_height="120dp">
             <TextView
-                android:id="@+id/tx_signupas"
                 android:layout_width="300dp"
                 android:layout_height="50dp"
                 android:layout_gravity="start"
@@ -31,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/create_acc"
-            android:background="@drawable/bg_round_rec">
+            android:background="@drawable/background_layerblue">
 
             <TableLayout
                 android:layout_width="wrap_content"
@@ -42,7 +41,6 @@
                 android:layout_margin="5dp">
 
                 <TableRow
-                    android:id="@+id/table_row1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="50dp"
@@ -61,12 +59,11 @@
                         android:shadowColor="#ECE6E6" />
 
                     <ImageView
-                        android:id="@+id/img_signinemail"
                         android:layout_width="1dp"
                         android:layout_height="29dp"
                         android:layout_gravity="center"
                         android:layout_marginEnd="50dp"
-                        app:srcCompat="@drawable/loginic" />
+                        app:srcCompat="@drawable/email" />
                 </TableRow>
                 <TableRow
                     android:layout_width="match_parent"
@@ -87,12 +84,11 @@
                         android:shadowColor="#ECE6E6" />
 
                     <ImageView
-                        android:id="@+id/img_nameicon"
                         android:layout_width="1dp"
                         android:layout_height="29dp"
                         android:layout_gravity="center"
                         android:layout_marginEnd="50dp"
-                        app:srcCompat="@drawable/signupname" />
+                        app:srcCompat="@drawable/nameicon" />
                 </TableRow>
 
                 <TableRow
@@ -114,12 +110,11 @@
                         android:shadowColor="#ECE6E6" />
 
                     <ImageView
-                        android:id="@+id/img_lastnameicon"
                         android:layout_width="1dp"
                         android:layout_height="29dp"
                         android:layout_gravity="center"
                         android:layout_marginEnd="50dp"
-                        app:srcCompat="@drawable/signupname" />
+                        app:srcCompat="@drawable/nameicon" />
                 </TableRow>
                 <TableRow
                     android:layout_width="match_parent"
@@ -145,7 +140,7 @@
                         android:layout_height="29dp"
                         android:layout_gravity="center"
                         android:layout_marginEnd="50dp"
-                        app:srcCompat="@drawable/loginpassword" />
+                        app:srcCompat="@drawable/password" />
                 </TableRow>
                 <TableRow
                     android:layout_width="match_parent"
@@ -171,7 +166,7 @@
                         android:layout_height="29dp"
                         android:layout_gravity="center"
                         android:layout_marginEnd="50dp"
-                        app:srcCompat="@drawable/loginpassword" />
+                        app:srcCompat="@drawable/password" />
                 </TableRow>
 
 
@@ -193,7 +188,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="240dp"
                         android:layout_marginEnd="240dp"
-                        android:background="@drawable/rounded_btn_black"
+                        android:background="@drawable/button_background"
                         android:text="Sign up"
                         android:textColor="@color/white"
                         android:textSize="16sp"/>
@@ -227,7 +222,7 @@
                         android:layout_marginTop="13dp"
                         android:layout_marginEnd="240dp"
                         android:layout_marginBottom="16dp"
-                        android:background="@drawable/rounded_btn_black"
+                        android:background="@drawable/button_background"
                         android:text="log in now"
                         android:textColor="@color/white"
                         android:textSize="16sp"/>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".BookGenre"
-    android:background="@drawable/bg_gradient">
+    android:background="@drawable/background_turquoise">
 
     <TextView
         android:layout_width="wrap_content"
@@ -31,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="690dp"
                 android:layout_marginTop="108dp"
-                android:background="@drawable/bg_round_rec"
+                android:background="@drawable/background_layerblue"
                 android:foregroundGravity="bottom" />
 
 

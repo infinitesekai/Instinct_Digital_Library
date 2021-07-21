@@ -21,7 +21,7 @@ import static com.example.digital_library.util.Utils.getImage;
 
 public class Profile extends Fragment {
     //declare variables
-    private Button editBtn,btnLogout;
+    private Button btnEdit,btnLogout;
     private User currentUser;
     private TextView emailText;
     private TextView firstnameText;
@@ -70,7 +70,7 @@ public class Profile extends Fragment {
         birthdateText = view.findViewById(R.id.tvbirthdate);
         btnLogout = view.findViewById(R.id.btn_logout);
         photo=view.findViewById(R.id.photo);
-        editBtn = view.findViewById(R.id.btneditprofile);
+        btnEdit = view.findViewById(R.id.btn_edit);
 
         //set text
         emailText.setText(currentUser.getEmail());
@@ -99,7 +99,7 @@ public class Profile extends Fragment {
 
         //on click listener for edit button
         //explicit intent to Edit_Profile
-        editBtn.setOnClickListener(new View.OnClickListener() {
+        btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),Edit_Profile.class);

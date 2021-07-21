@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Reels"
-    android:background="@drawable/bg_gradient">
+    android:background="@drawable/background_turquoise">
 
     <FrameLayout
 
@@ -31,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1000dp"
                 android:layout_marginTop="108dp"
-                android:background="@drawable/bg_round_rec"
+                android:background="@drawable/background_layerblue"
                 android:foregroundGravity="bottom" />
     <FrameLayout
         android:layout_width="wrap_content"
@@ -120,7 +120,7 @@
             android:layout_height="40dp"
             android:layout_marginLeft="45dp"
             android:layout_marginTop="4dp"
-            android:background="@drawable/rounded_btn_black"
+            android:background="@drawable/button_background"
             android:text="Learn More"
             android:textColor="@color/white" />
 
@@ -130,7 +130,7 @@
             android:layout_height="40dp"
             android:layout_marginTop="4dp"
             android:layout_marginLeft="60dp"
-            android:background="@drawable/rounded_btn_black"
+            android:background="@drawable/button_background"
             android:text="Shuffle"
             android:textColor="@color/white" />
     </LinearLayout>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AudioBook"
-    android:background="@drawable/bg_gradient">
+    android:background="@drawable/background_turquoise">
 
     <FrameLayout
 
@@ -34,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1000dp"
                 android:layout_marginTop="108dp"
-                android:background="@drawable/bg_round_rec"
+                android:background="@drawable/background_layerblue"
                 android:foregroundGravity="bottom" />
 
     <FrameLayout
@@ -76,10 +76,11 @@
         </FrameLayout>
 
             <ImageView
+                android:id="@+id/musicimg"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:src="@drawable/ic_baseline_music_note_24"
-                android:layout_marginTop="30dp"
+                android:layout_height="180dp"
+                android:src="@drawable/audiobook"
+                android:layout_marginTop="50dp"
                 />
 
             <LinearLayout
@@ -160,7 +161,7 @@
                 android:layout_height="40dp"
                 android:layout_marginLeft="60dp"
                 android:layout_marginTop="4dp"
-                android:background="@drawable/rounded_btn_black"
+                android:background="@drawable/button_background"
                 android:text="Learn More"
                 android:textColor="@color/white" />
 
@@ -170,7 +171,7 @@
                 android:layout_height="40dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginLeft="60dp"
-                android:background="@drawable/rounded_btn_black"
+                android:background="@drawable/button_background"
                 android:text="Shuffle"
                 android:textColor="@color/white" />
         </LinearLayout>
