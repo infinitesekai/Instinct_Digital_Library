@@ -39,7 +39,7 @@ public class FavList extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_fav_page, container, false);
-
+        //get intent
         Bundle bundle = getArguments();
         currentUser = (User) bundle.getSerializable("user");
 
@@ -47,11 +47,11 @@ public class FavList extends Fragment {
         databaseAccess= DatabaseAccess.getInstance(getContext());
         databaseAccess.open();
 
-        //reference to list view by id
+        //find view
         fav_list= (ListView) v.findViewById(R.id.fav_list);
         favshelfbutton= (Button) v.findViewById(R.id.favshelfbutton);
 
-
+        //check if favourite list is empty
         if(FavouritePage.favlist_item.isEmpty()){
             Toast.makeText(getActivity(), "No Books.", Toast.LENGTH_SHORT).show();
 
@@ -66,7 +66,7 @@ public class FavList extends Fragment {
         fav_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //get selected child name from list according to the position
+                //get book title according to position
                 String bookTitle=fav_list.getItemAtPosition(position).toString();
 
 
@@ -82,6 +82,7 @@ public class FavList extends Fragment {
             }
         });
 
+        //explicit intent-change to favourite shelf view fragment
         favshelfbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

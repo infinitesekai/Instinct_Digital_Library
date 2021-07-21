@@ -27,7 +27,7 @@ public class BookList extends AppCompatActivity {
 
     DatabaseAccess databaseAccess;
 
-    //list view, list item and adapter to display list of application
+    //list view, list item and adapter to display list of book
     ListView book_list;
     public static ArrayList<String> list_item;
     ArrayAdapter adapter;
@@ -38,7 +38,7 @@ public class BookList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_list);
-
+        // get intent
         currentUser = (User) getIntent().getSerializableExtra("user");
         lastfragment = 0;
         String genre=getIntent().getStringExtra("genre");
@@ -47,9 +47,12 @@ public class BookList extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
+
+        //find view
         list_title=findViewById(R.id.list_title);
         shelfbutton=findViewById(R.id.shelfbutton);
 
+        //set title
         list_title.setText("Collections: " + genre);
 
 
@@ -63,9 +66,7 @@ public class BookList extends AppCompatActivity {
         //array list to store list item
         list_item=new ArrayList<String>();
 
-        //call database method to get application list
-        //child added into list_item
-        //list_item is the list of application for children
+        //get book list in database
         databaseAccess.getBookList(genre);
 
         if(list_item.isEmpty()){
@@ -78,17 +79,17 @@ public class BookList extends AppCompatActivity {
 
         book_list.setAdapter(adapter);//conjoin array adapter with list view
 
-        //click on list item
+        //click on list item-explicit intent to BookDesc
         book_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //get selected child name from list according to the position
+                //get selected book title from list according to the position
                 String bookTitle=book_list.getItemAtPosition(position).toString();
 
 
                 Intent i;
 
-                //start intent to navigate to respective page according to application status
+
                 i= new Intent(BookList.this, BookDesc.class);
                 i.putExtra("user",currentUser);
                 i.putExtra("bookTitle",bookTitle);
@@ -98,6 +99,8 @@ public class BookList extends AppCompatActivity {
             }
         });
 
+
+        //button for explicit intent-change to bookshelf view
         shelfbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,7 +116,7 @@ public class BookList extends AppCompatActivity {
 
 
     //function for bottom navigation bar
-    //back to Home Page
+
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {

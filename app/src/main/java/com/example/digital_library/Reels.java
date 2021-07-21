@@ -20,9 +20,10 @@ import android.widget.VideoView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Reels extends AppCompatActivity {
+    //declare variables
     private static final String TAG = Reels.class.getSimpleName();
-    private User currentUser;//current user
-    private int lastfragment;//indicate last fragment for navigation bar
+    private User currentUser;
+    private int lastfragment;
     VideoView reel;
     private boolean mVolumePlaying = false;
     AppCompatImageView volume;
@@ -35,6 +36,7 @@ public class Reels extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reels);
 
+        //current user intent
         currentUser = (User) getIntent().getSerializableExtra("user");
         lastfragment = 0;
 
@@ -42,44 +44,51 @@ public class Reels extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
+        //find view
         reeltitle= findViewById(R.id.reel_title);
         volume = findViewById(R.id.volume_std);
         shufflebtn=findViewById(R.id.shuffle);
         notebtn=findViewById(R.id.notebutton);
         morebtn=findViewById(R.id.btnmore);
 
-
+        //get random integer for shuffle
         int shufflenum=getRandom(1,10);
+
+        //get video path according to shuffled number
         String path=shufflereel(shufflenum);
 
 
 
-        //set the video announcement
+        //find view
         reel = findViewById(R.id.reel);
 
+        //parse and set video uri for path
         Uri uri = Uri.parse(path);
         reel.setVideoURI(uri);
 
+        //initiate,set and start media controller
         MediaController mediaController = new MediaController(this);
         reel.setMediaController(mediaController);
         reel.start();
 
+        //prepared listner for video view
         reel.setOnPreparedListener(this::PreparedListener);
 
+
+        //shuffle button
+        //explicit intent to same page-shuffle for another random number
         shufflebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i= new Intent(Reels.this, Reels.class);
                 i.putExtra("user",currentUser);
                 startActivity(i);
-//               String reelpath=shufflereel(getRandom(1,5));
-//                Uri uri = Uri.parse(reelpath);
-//                reel.setVideoURI(uri);
 
             }
         });
 
-
+        //note button
+        //implicit intent-action send
         notebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,6 +104,8 @@ public class Reels extends AppCompatActivity {
 
         });
 
+        //load more-switch to get link according to shuffle number
+        //implicit intent-action view and set data to open link
         morebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,10 +121,13 @@ public class Reels extends AppCompatActivity {
 
     }
 
+    //function to get random number
     private int getRandom(int min,int max) {
         return min + (int)(Math.random()*((max-min)+1));
     }
 
+
+    //shuffle-video path according to the shuffle number
     private String shufflereel(int shufflenum){
         String path="";
         switch(shufflenum){
@@ -163,6 +177,8 @@ public class Reels extends AppCompatActivity {
         return path;
     }
 
+
+    //switch to get link according to shuffle number
     private String switchlink(int shufflenum){
         String link="";
         switch(shufflenum){
@@ -203,6 +219,7 @@ public class Reels extends AppCompatActivity {
     }
 
 
+    //prepared listner for volume and
     private void PreparedListener(MediaPlayer mp){
         try {
             mp.setVolume(0f, 0f);
@@ -228,6 +245,8 @@ public class Reels extends AppCompatActivity {
         }
     }
 
+
+    //bottom navigation
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {

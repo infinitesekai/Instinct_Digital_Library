@@ -3,13 +3,14 @@ package com.example.digital_library;
 
 import java.io.Serializable;
 
+//user class
+
 public class User implements Serializable{
 
     private String userID;
     private String email;
     private String firstname;
     private String lastname;
-    //private int role;
     private String password;
     private String gender;
     private String bDate;
@@ -61,15 +62,6 @@ public class User implements Serializable{
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
-
-
-//    public int getRole() {
-//        return role;
-//    }
-//
-//    public void setRole(int role) {
-//        this.role = role;
-//    }
 
     public String getPassword() {
         return password;

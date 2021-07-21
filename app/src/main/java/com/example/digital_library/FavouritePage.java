@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 
 public class FavouritePage extends Fragment {
-
+    //declare variable
     DatabaseAccess databaseAccess;
     private User currentUser;
     private int lastfragment;
@@ -33,6 +33,7 @@ public class FavouritePage extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_fav_shelf, container, false);
 
+        //get current user
         Bundle bundle = getArguments();
         currentUser = (User) bundle.getSerializable("user");
 
@@ -44,21 +45,28 @@ public class FavouritePage extends Fragment {
         fav_grid= (GridView) v.findViewById(R.id.favbook_grid);
         favlistbutton=(Button) v.findViewById(R.id.favlistbutton);
 
+        //get favourite list
         favlist_item=new ArrayList<String>();
 
         databaseAccess.getFavList(currentUser.getEmail());
 
+        //check if the list is empty
         if(favlist_item.isEmpty()){
             Toast.makeText(getActivity(), "No Books.", Toast.LENGTH_SHORT).show();
 
         }
 
+
+        //get cover photo for books in favourite
         favcover_item=new ArrayList<byte[]>();
 
         favcover_item=databaseAccess.getFavCover(currentUser.getEmail());
 
+        //favourite-grid view-set image adapter
         fav_grid.setAdapter(new ImageAdapter(getContext(),favcover_item));
 
+        //grid-item listener
+        //explicit intent to BookDesc
         fav_grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent,
                                     View v, int position, long id){
@@ -70,6 +78,8 @@ public class FavouritePage extends Fragment {
             }
         });
 
+        //list button
+        //change to fragment in list view
         favlistbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -15,18 +15,15 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class SignUp extends AppCompatActivity {
-    private EditText useremail,password,repassword,firstname,lastname;//input text
-    private Button signup,signin;//signup button,signin button
-
-    //private DatabaseHelper DB;
-    private int role;
+    //declare variable
+    private EditText useremail,password,repassword,firstname,lastname;
+    private Button signup,signin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-
-        //reference to view by id
+        //find view
         useremail =findViewById(R.id.etx_signin_email);
         firstname =findViewById(R.id.etx_signin_firstname);
         lastname =findViewById(R.id.etx_signin_lastname);
@@ -34,33 +31,34 @@ public class SignUp extends AppCompatActivity {
         repassword =findViewById(R.id.etx_signup_repassword);
         signup =findViewById(R.id.btn_signup);
         signin =findViewById(R.id.btn_signin);
-        //get user type
-        //role = getIntent().getIntExtra("role", 0);
 
         //initiate database access and open database
         DatabaseAccess DB = DatabaseAccess.getInstance(this);
         DB.open();
 
-        // on click listener for export button
+        //sign up button
         //save all the information and create an account
+        //insert into database
+        //explicit intent to login page if registered successfullly
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //get user input
                 String email = useremail.getText().toString();
                 String pass = password.getText().toString();
                 String repass = repassword.getText().toString();
                 String firstnameStr = firstname.getText().toString().toUpperCase();
                 String lastnameStr = lastname.getText().toString().toUpperCase();
-                if (email.isEmpty()) return;
-                if (pass.isEmpty()) return;
-                if (repass.isEmpty()) return;
+
+                //check if empty or not fill all fields
                 if (email.equals("")||pass.equals("")||repass.equals("")) {
-                    Toast.makeText(SignUp.this,"Please enter all the fields",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUp.this,"Please enter all credentials",Toast.LENGTH_SHORT).show();
                 } else{
                     if(pass.equals(repass)){
-
+                        //check user with email
                         User checkuser =DB.checkUser(email);
-                        // If cannot query:true, can query: false
+
+                        //can sign up if user not yet exist
                         if(checkuser.getEmail() == null ){
                             //insert data into user table
                             Boolean insert = DB.insertUser(email,pass, firstnameStr, lastnameStr);
@@ -86,8 +84,8 @@ public class SignUp extends AppCompatActivity {
             }
         });
 
-        // on click listener for export button
-        //user click here go back to login page
+        //sign in button
+        //explicit intent to login page
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

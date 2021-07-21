@@ -20,7 +20,6 @@ public class BookInfo {
         //this.cover = cover;
     }
 
-//getter and setter for qualification information
 
     public String getTitle() {
         return title;
