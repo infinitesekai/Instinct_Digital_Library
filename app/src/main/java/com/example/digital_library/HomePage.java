@@ -35,7 +35,7 @@ public class HomePage extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_homepage, container, false);
-        TextView nameText = v.findViewById(R.id.student_home_name);
+        TextView nameText = v.findViewById(R.id.name);
         Bundle bundle = getArguments();
 
         //get bundle for current user
